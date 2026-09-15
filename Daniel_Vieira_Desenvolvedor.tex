@@ -1,0 +1,84 @@
+% Curriculo de Daniel Vieira Fernandes
+% Compilar com pdfLaTeX: pdflatex Daniel_Vieira_Desenvolvedor.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.98]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fontawesome5}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\usepackage{microtype}
+\newcommand{\cvlink}[2]{\href{#1}{\underline{#2}}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\linespread{1.08}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=5pt,topsep=5pt,parsep=0pt}
+\titleformat{\section}{\bfseries\normalsize}{}{0pt}{}
+\titlespacing*{\section}{0pt}{13pt}{6pt}
+\sloppy
+
+\newcommand{\job}[3]{%
+  \textbf{#1}\hfill\textit{#2}\\
+  #3\par
+}
+
+\begin{document}
+\begin{center}
+  {\Large\bfseries Daniel Vieira Fernandes}\\[4pt]
+  Hortolândia, SP \quad|\quad (19) 98999-3437\\[8pt]
+  \cvlink{mailto:fernandesdanielvieira@gmail.com}{\faEnvelope\enspace fernandesdanielvieira@gmail.com}\\[8pt]
+  \cvlink{https://github.com/DanielVieiraFernandes}{\faGithub\enspace github.com/DanielVieiraFernandes}\\[8pt]
+  \cvlink{https://www.linkedin.com/in/danielvieiradev/}{\faLinkedin\enspace linkedin.com/in/danielvieiradev}\\[8pt]
+  \cvlink{https://www.danielvieiradev.com.br/}{\faGlobe\enspace www.danielvieiradev.com.br}
+\end{center}
+
+\section*{Resumo profissional}
+Atuo no desenvolvimento full stack .NET, com foco em ASP.NET Core e Blazor (Server e WebAssembly). Participo da modernização de um ERP legado para arquitetura web, na qual desenvolvi módulos fiscais e de estoque e tratei regras de negócio complexas. Desenvolvi também um projeto próprio de monitoramento de serviços, autenticação e observabilidade.
+
+\section*{Competências técnicas}
+\textbf{Linguagens e interfaces:} C\#, TypeScript, JavaScript, Blazor, React Native, HTML, CSS, JS interop, IndexedDB e File System Access API.\\
+\textbf{Back-end e dados:} ASP.NET Core, Worker Service, PostgreSQL, Redis, Dapper, Entity Framework, NestJS, APIs REST e JWT.\\
+\textbf{Observabilidade e ferramentas:} Serilog, Seq, Docker, Git, GitHub, Azure DevOps, MudBlazor e Syncfusion.
+
+\section*{Experiência profissional}
+\job{Estagiário em Desenvolvimento de Software C\# e Blazor}{ago. 2025 -- atual}{Automahelp}
+\begin{itemize}
+  \item Participei da migração de um ERP legado em VB para ASP.NET Core e Blazor. Desenvolvi o módulo fiscal de NF-e com integração direta à SEFAZ, serialização de XML e validações tributárias.
+  \item Implementei o módulo de entrada de mercadorias por XML ou lançamento manual. Integrei estoque, custos, margens e contas a pagar e incluí validações por regime tributário, cancelamento com reversão das alterações e trilha de auditoria.
+  \item Adaptei a seleção de XMLs locais à arquitetura web com File System Access API e IndexedDB. Processei os arquivos mais recentes em blocos, com limite de 50 MB, carregamento progressivo no Blazor e controles de memória e tempo limite.
+  \item Corrigi problemas de concorrência em cálculos assíncronos disparados ao sair de campos. Usei bloqueio e atualização do estado mais recente para impedir que chamadas anteriores sobrescrevessem os valores atuais.
+  \item Propus uma aplicação interna independente para acompanhar a saúde, o consumo de CPU e memória e os logs dos serviços. Revisei sua arquitetura e implementação e contribuí para os mecanismos de recuperação por limite de memória e visualização de logs no Seq.
+\end{itemize}
+\newpage
+\job{Desenvolvedor React Native e NestJS}{dez. 2024 -- jul. 2025}{Axion IT}
+\begin{itemize}
+  \item Desenvolvi funcionalidades de ponta a ponta com NestJS e React Native, convertendo requisitos de negócio em APIs e interfaces mobile.
+  \item Liderei o front-end de sistemas de gestão, utilizei Zustand para gerenciamento de estado e integrei leitores de código para facilitar a operação dos usuários.
+  \item Corrigi migrations e fiz manutenção em bancos SQL. Diagnostiquei falhas de build e segurança em Android para manter a estabilidade da aplicação.
+\end{itemize}
+\section*{Projeto pessoal}
+\textbf{HealthCheck Monitor} \hfill \faGithub\,\cvlink{https://github.com/DanielVieiraFernandes/Health-Check-Monitor}{github.com/DanielVieiraFernandes/Health-Check-Monitor}\\
+Criei uma aplicação em Blazor Server e .NET 10 para monitorar endpoints HTTP. Desenvolvi um worker com intervalos e timeouts configuráveis, até 20 verificações simultâneas, histórico de disponibilidade e latência, auditoria e limpeza periódica de registros em PostgreSQL. Implementei autenticação com cookies, gerenciamento de sessões e revogação de tokens com JWT e Redis; estruturei os logs com Serilog e Seq.
+
+\section*{Formação acadêmica}
+\textbf{Tecnólogo em Análise e Desenvolvimento de Sistemas} \hfill conclusão prevista: jul. 2028\\
+UNIP
+
+\textbf{Técnico em Análise e Desenvolvimento de Sistemas} \hfill concluído: dez. 2024\\
+Etec
+
+\section*{Cursos extracurriculares}
+\begin{itemize}
+  \item Inglês --- Fluency Academy, em andamento.
+  \item Especialização em C\# e .NET --- Rocketseat, 100 h (2026).
+  \item C\# Essencial --- Macoratti, 40 h (2026).
+  \item Blazor Essencial --- Macoratti, 40 h (2026).
+  \item NodeJS --- Rocketseat, 50 h (2025).
+  \item Profissional TypeScript --- Coffstack, 10 h (2025).
+\end{itemize}
+\end{document}
