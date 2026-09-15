@@ -4,90 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#08080c">
-  <meta name="description" content="Daniel Vieira Fernandes — Software Engineer. Engenharia .NET de ponta a ponta: C#, Blazor, ASP.NET, observabilidade, auditoria e integrações de baixo acoplamento.">
-  <title>Daniel Vieira Fernandes — Software Engineer</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230b0a14'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='monospace' font-size='27' fill='%23a5a0ff'%3EDV%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="Daniel Vieira Fernandes, desenvolvedor de software com foco em C# e .NET. Conheça meus projetos, habilidades, currículo e contatos.">
+  <title>Daniel Vieira — Desenvolvedor de software</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308080c'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='sans-serif' font-size='26' fill='white'%3EDV%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <style>
-    :root{color-scheme:dark;--bg:#08080c;--text:#efeff6;--muted:#9c9cab;--line:#ffffff14;--accent:#a6a0ff}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 Inter,system-ui,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}h1,h2,h3,p{margin:0}::selection{background:#6366f1;color:white}:focus-visible{outline:2px solid var(--accent);outline-offset:5px}.defs{position:absolute;width:0;height:0;overflow:hidden}.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.wrap{width:min(1200px,calc(100% - 64px));margin:auto}.mono,.eyebrow{font-family:ui-monospace,Consolas,monospace}.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.accent{color:var(--accent)}.skip{position:fixed;left:12px;top:12px;z-index:100;padding:12px 18px;background:#6366f1;transform:translateY(-160%)}.skip:focus{transform:none}
-    .header{position:fixed;inset:22px 0 auto;z-index:30}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 22px;border:1px solid var(--line);border-radius:12px;background:#101017cc;backdrop-filter:blur(22px);box-shadow:0 8px 40px #0003}.logo{font:600 21px ui-monospace,monospace;letter-spacing:-1px}.logo span{color:var(--accent)}.nav-links{display:flex;gap:30px;font-size:13px;color:#aaa9bc}.nav-links a:hover{color:var(--text)}.availability{display:flex;align-items:center;gap:8px;font-size:12px;color:#b7b7c5}.dot{width:6px;height:6px;border-radius:50%;background:#97c9b1;box-shadow:0 0 12px #97c9b14a;flex-shrink:0}.menu-toggle{display:none;border:0;background:none;color:var(--text);padding:8px}
-    .hero{position:relative;isolation:isolate;overflow:hidden;padding:180px 0 0;background:radial-gradient(ellipse at 75% 37%,#4f46e51c,transparent 56%)}.hero:before{content:'';position:absolute;inset:0;z-index:-1;background-image:linear-gradient(#ffffff02 1px,transparent 1px),linear-gradient(90deg,#ffffff02 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(#000,transparent 90%)}.hero-main{position:relative;min-height:565px}.hero-copy{position:relative;z-index:2;padding-top:12px;max-width:730px;pointer-events:none}.hero-copy a,.hero-copy button{pointer-events:auto}.intro{display:flex;align-items:center;gap:12px;margin-bottom:24px}.intro:before{content:'';width:26px;height:1px;background:var(--accent)}h1{font-size:clamp(48px,5.5vw,76px);line-height:1.08;letter-spacing:-.065em;font-weight:500}.gradient-text{background:linear-gradient(110deg,#b6b8ff,#9b86d7);color:transparent;background-clip:text;-webkit-background-clip:text}.role{font-size:13px;color:#b5b2ca;margin-top:27px;line-height:1.8}.hero-description{max-width:480px;color:var(--muted);font-size:15px;line-height:1.85;margin-top:15px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:29px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:15px;padding:12px 20px;min-height:48px;border:1px solid #ffffff1c;border-radius:7px;background:#ffffff03;color:var(--text);font-size:13px;font-weight:500;transition:transform .2s,background .2s,border-color .2s}.btn:hover{transform:translateY(-2px);background:#ffffff09;border-color:#a6a0ff60}.btn-primary{background:#6462cb;border-color:#9190e67a;box-shadow:inset 0 1px #ffffff20,0 4px 26px #4f46e51a}.btn-primary:hover{background:#7774db}.network{position:absolute;right:-70px;top:-60px;width:59%;height:575px;z-index:1}.network canvas{display:block;width:100%;height:100%;pointer-events:none}.network-fallback{position:absolute;inset:24% 12%;display:grid;place-content:center;gap:16px;text-align:center;color:var(--accent);font:12px ui-monospace,monospace;border:1px solid #a6a0ff20;border-radius:18px;background:#6366f108}.network-fallback strong{font-size:22px;font-weight:400}.network.ready .network-fallback{display:none}.network-label{position:absolute;bottom:27px;right:26px;display:flex;gap:12px;align-items:center;font:11px ui-monospace,monospace;color:#9490b0}.motion-toggle{width:32px;height:32px;border:1px solid #ffffff20;border-radius:50%;background:#12111c;color:#c0bbef;font-size:11px}.motion-toggle[hidden]{display:none}.hero-bottom{display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding:24px 0;font:12px ui-monospace,monospace;color:#92909f}.hero-bottom>div{display:flex;gap:28px;flex-wrap:wrap}.text-link{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:#bbb8cf}.text-link:hover{color:var(--accent)}
-    .section{padding:90px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:34px}.section-heading h2{font-size:clamp(30px,3.5vw,44px);font-weight:500;letter-spacing:-.05em;line-height:1.15;margin-top:16px}.section-heading>p{max-width:330px;font-size:14px;color:var(--muted)}.projects{display:grid;grid-template-columns:1fr 1fr;gap:22px}.project{background:linear-gradient(135deg,#14131e,#0e0e14);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:border-color .3s,transform .3s}.project:hover{border-color:#a6a0ff50;transform:translateY(-3px)}.featured{grid-column:1/-1;display:grid;grid-template-columns:1.05fr 1fr;min-height:375px}.project-body{padding:32px;display:flex;flex-direction:column;height:100%}.project-kicker{font:11px ui-monospace,monospace;color:var(--accent);letter-spacing:.09em;text-transform:uppercase;margin-bottom:25px}.project-heading{display:flex;align-items:start;justify-content:space-between;gap:15px}.project h3{font-weight:500;font-size:27px;letter-spacing:-.045em;line-height:1.2}.featured h3{font-size:32px}.project h3 small{display:block;font-size:18px;letter-spacing:-.02em;color:#aaa7c2;margin-top:8px}.project p{font-size:14px;color:var(--muted);line-height:1.8;margin-top:17px;max-width:470px}.repo-link{width:37px;height:37px;display:grid;place-items:center;border:1px solid #ffffff1a;border-radius:50%;flex-shrink:0;transition:background .2s,color .2s}.repo-link:hover{background:#a6a0ff;color:#111}.engineering{display:flex;flex-wrap:wrap;gap:8px 16px;color:#c5c0dc;font:12px/1.8 ui-monospace,monospace;margin:21px 0}.engineering span:before{content:'↳ ';color:#8f83d8}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}.tag{font:11px/1.4 ui-monospace,monospace;color:#b5b2c4;border:1px solid #ffffff10;background:#ffffff02;border-radius:4px;padding:5px 8px}.feature-visual{display:flex;flex-direction:column;justify-content:center;padding:34px 30px;background:radial-gradient(ellipse at 80% 60%,#6366f12a,transparent 80%);border-left:1px solid var(--line)}.dashboard{background:#0c0d15;border:1px solid #a6a0ff25;border-radius:9px;box-shadow:0 20px 65px #0004;overflow:hidden;transform:perspective(900px) rotateY(-5deg);transition:transform .4s}.featured:hover .dashboard{transform:perspective(900px) rotateY(0deg)}.dashboard-top{display:flex;justify-content:space-between;gap:12px;padding:13px 17px;border-bottom:1px solid var(--line);font-size:11px;color:#cecae4}.dashboard-body{padding:17px}.dashboard-label{font:10px ui-monospace,monospace;color:#8d899f;letter-spacing:.06em;text-transform:uppercase}.service-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;font:11px ui-monospace,monospace;color:#c5c0d7}.ticks{display:flex;gap:3px}.ticks i{width:5px;height:18px;border-radius:2px;background:#7e76c5}.ticks i:nth-child(4n){background:#4f496f}.ticks i:nth-child(5n){background:#ada3f1}.service-dot{width:5px;height:5px;background:#a5c6b8;border-radius:50%}.dashboard-bottom{margin-top:19px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:#9892b3;font:10px ui-monospace,monospace}.feature-visual .visual-caption{font:10px ui-monospace,monospace;color:#848092;margin-top:14px;text-align:right}.mini-diagram{display:flex;align-items:center;gap:9px;padding-top:18px;margin-top:6px;font:11px ui-monospace,monospace;color:#9c92bf}.mini-diagram span{padding:9px 12px;border:1px solid #ffffff13;border-radius:5px}.mini-diagram .highlight{border-color:#a6a0ff40;color:#c9c0f6;background:#a6a0ff07}.project:not(.featured) .tags{margin-top:24px}
-    .toolbox{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}.tool{grid-column:span 2;border:1px solid var(--line);border-radius:10px;background:linear-gradient(145deg,#13121caa,#0d0d13);padding:26px;transition:border-color .2s}.tool:nth-child(n+4){grid-column:span 2}.tool:hover{border-color:#a6a0ff40}.tool-number{display:block;font:12px ui-monospace,monospace;color:var(--accent);margin-bottom:24px}.tool h3{font-size:15px;font-weight:500;letter-spacing:-.02em;margin-bottom:16px}.tool ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:7px 13px}.tool li{font-size:13px;color:var(--muted)}.tool li:not(:last-child):after{content:'·';color:#4c475e;margin-left:13px}.principle{border-top:1px solid var(--line);margin-top:33px;padding-top:25px;font-size:13px;color:var(--muted)}
-    .contact{margin-top:30px;padding:75px 0 30px;border-top:1px solid var(--line);background:radial-gradient(ellipse at 50% 100%,#4f46e515,transparent 65%)}.contact-main{display:flex;align-items:center;justify-content:space-between;gap:35px}.contact h2{font-size:clamp(34px,4.4vw,55px);line-height:1.15;letter-spacing:-.055em;font-weight:500;margin:20px 0}.contact p{font-size:14px;color:var(--muted);max-width:460px}.contact-actions{display:flex;flex-direction:column;gap:10px}.copy-button{display:flex;justify-content:center;align-items:center;gap:8px;background:none;border:0;color:var(--muted);font-size:12px;padding:10px}.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--line);margin-top:60px;padding-top:25px;color:#868394;font-size:12px}.socials{display:flex;gap:22px}.socials a:hover{color:var(--accent)}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,15px);z-index:50;max-width:calc(100% - 32px);width:max-content;padding:15px 20px;background:#1a1729;border:1px solid #a6a0ff50;border-radius:9px;color:#e1dcf6;font-size:14px;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;box-shadow:0 10px 40px #0006}.toast.visible{opacity:1;transform:translate(-50%,0)}
-    @media(min-width:1600px){.wrap{width:min(1400px,calc(100% - 120px))}.hero{padding-top:210px}.hero-main{min-height:630px}h1{font-size:90px}.hero-copy{max-width:850px}.network{height:650px}.hero-description{max-width:525px;font-size:16px}}
-    @media(max-width:1050px){.nav .availability{display:none}h1{font-size:61px}.network{right:-95px;opacity:.85}.project-body{padding:26px}.feature-visual{padding:25px 20px}.ticks{gap:2px}.ticks i{width:4px}.tool{padding:22px}.hero-bottom>div{gap:19px}}
-    @media(max-width:760px){.wrap{width:calc(100% - 36px)}.header{top:12px}.nav{padding:10px 14px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:calc(100% + 8px);left:18px;right:18px;padding:12px;background:#14131e;border:1px solid var(--line);border-radius:10px;flex-direction:column;gap:0}.nav-links.open{display:flex}.nav-links a{padding:12px}.hero{padding-top:128px}.hero-main{min-height:0}.hero-copy{padding-top:0}.intro{font-size:10px;letter-spacing:.08em;gap:8px}h1{font-size:clamp(41px,8.9vw,65px)}.hero-description{font-size:14px}.role{font-size:12px;margin-top:22px}.network{position:relative;right:auto;top:auto;width:100%;height:330px;margin-top:5px;opacity:1}.network-label{right:0;bottom:15px;font-size:10px}.hero-bottom{font-size:10px;padding:21px 0}.hero-bottom>div{gap:12px}.hero-bottom>a{display:none}.section{padding:57px 0}.section-heading{align-items:start;flex-direction:column;gap:22px}.section-heading h2{font-size:34px}.projects{grid-template-columns:1fr;gap:18px}.featured{grid-template-columns:1fr;grid-column:auto}.project h3,.featured h3{font-size:26px}.project-body{padding:26px}.feature-visual{padding:24px;border-left:0;border-top:1px solid var(--line)}.dashboard{transform:none;max-width:440px;width:100%;margin:auto}.toolbox{grid-template-columns:1fr 1fr;gap:12px}.tool,.tool:nth-child(n+4){grid-column:auto}.tool:last-child{grid-column:auto}.tool{padding:20px}.tool h3{font-size:14px}.tool li{font-size:12px}.contact{padding-top:50px}.contact-main{flex-direction:column;align-items:start;gap:28px}.contact-actions{width:100%;max-width:310px}.footer-bottom{flex-direction:column;align-items:start;gap:16px;margin-top:42px}}
-    @media(max-width:390px){.toolbox{grid-template-columns:1fr}.tool:last-child{grid-column:auto}.btn{padding:12px 16px}.mini-diagram{gap:6px;font-size:10px}.mini-diagram span{padding:8px}.feature-visual{padding:18px}.dashboard-body{padding:13px}.ticks i{width:3px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}.btn:hover,.project:hover{transform:none}.dashboard{transform:none}}
-  
-    /* Spacing for the extended .NET positioning and direct contact. */
-    .hero-main{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:24px;min-height:520px;padding-bottom:40px}.hero-copy{max-width:100%;padding-top:0;min-width:0}
-    .hero-copy h1{font-size:clamp(42px,4.5vw,64px)}.hero-description{max-width:490px;font-size:15px}.network{position:relative;right:auto;top:auto;width:100%;height:480px;opacity:1}.intro{flex-wrap:wrap}
-    .nav{position:relative}.reading-progress{position:absolute;left:12px;right:12px;bottom:-1px;height:2px;overflow:hidden;border-radius:2px;pointer-events:none}.reading-progress span{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,#6366f1,#a6a0ff);box-shadow:0 0 10px #8b5cf650}.nav-links a[aria-current="location"]{color:var(--accent)}
-    .role{max-width:620px}.hero-bottom>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;width:100%;line-height:1.7}.hero-bottom>a{display:none}
-    .tool-number{font-size:11px;line-height:1.65;letter-spacing:.015em}.tool-frontier{background:linear-gradient(145deg,#111019,#0d0d13);border-style:dashed}.tool-frontier .tool-number{color:#9891bb}.frontier-note{font-size:12px;color:var(--muted);margin:-5px 0 16px}
-    .contact-main{display:grid;grid-template-columns:minmax(0,1fr) 345px;align-items:center;gap:55px}.contact h2{font-size:clamp(32px,3.3vw,47px);max-width:800px}.contact-copy>p{max-width:650px}.contact-copy .eyebrow{font-size:12px}.contact-actions{min-width:0}.email-button{gap:10px;padding:14px 12px;font-size:12px}.email-button span{overflow-wrap:anywhere;min-width:0}.email-hint{font-size:11px;color:var(--muted);text-align:center;line-height:1.7}
-    @media(min-width:1600px){.hero-copy h1{font-size:72px}.hero-description{max-width:530px;font-size:16px}.network{height:540px}.contact h2{font-size:52px}}
-    @media(max-width:1050px){.contact-main{grid-template-columns:1fr;gap:28px}.contact-actions{max-width:360px;width:100%}}
-    @media(max-width:760px){.hero-main{grid-template-columns:1fr;gap:12px;min-height:0;padding-bottom:0}.hero-copy h1{font-size:clamp(38px,8.7vw,60px)}.hero-description{font-size:14px}.network{height:330px}.hero-bottom>div{grid-template-columns:1fr;gap:12px;font-size:12px}.tool:nth-child(n+4){grid-column:auto}.contact h2{font-size:34px}.contact-actions{max-width:100%}.nav-links{left:0;right:0}}
-  </style>
+  <script defer src="portfolio.js"></script>
 </head>
 <body>
   <svg class="defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"/></symbol>
-    <symbol id="down" viewBox="0 0 24 24"><path d="M12 5v14m-6-6 6 6 6-6"/></symbol>
     <symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4"/></symbol>
-    <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="email" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 6 9 7 9-7"/></symbol>
+    <symbol id="file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zM14 3v5h5M8 12h8M8 16h6"/></symbol>
+    <symbol id="github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.3-4.3-2.2-6-2.7M15 22v-3.4c0-1 .1-1.5-.5-2 3.1-.4 6.3-1.5 6.3-7A5.5 5.5 0 0 0 19.3 6c.2-.6.7-2.1-.2-3.8 0 0-1.2-.4-4 1.5a13.8 13.8 0 0 0-7.2 0C5.1 1.8 3.9 2.2 3.9 2.2 3 3.9 3.5 5.4 3.7 6a5.5 5.5 0 0 0-1.5 3.8c0 5.5 3.2 6.6 6.3 7-.5.5-.6 1.2-.5 2V22"/></symbol>
+    <symbol id="linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.1M11 17v-7m0 3a3 3 0 0 1 6 0v4"/></symbol>
+    <symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M15 8V4H4v11h4"/></symbol>
+    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 21v-3a7 7 0 0 1 14 0v3"/></symbol>
+    <symbol id="code" viewBox="0 0 24 24"><path d="m8 6-6 6 6 6m8-12 6 6-6 6m-3-15-2 18"/></symbol>
+    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8zm-10 9 10 5 10-5M2 17l10 5 10-5"/></symbol>
+    <symbol id="up" viewBox="0 0 24 24"><path d="M12 20V4m-7 7 7-7 7 7"/></symbol>
   </defs></svg>
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
   <header class="header">
-    <nav class="nav wrap backdrop-blur-md border-white/10" aria-label="Navegação principal">
-      <a class="logo" href="#inicio" aria-label="Daniel Vieira — início"><span>&lt;</span>DV <span>/&gt;</span></a>
-      <div class="nav-links" id="nav-links"><a href="#projetos">Projetos</a><a href="#toolbox">Toolbox</a><a href="#contato">Contato</a></div>
-      <span class="availability"><span class="dot" aria-hidden="true"></span>Disponível para novos projetos</span>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><svg class="icon" aria-hidden="true"><use href="#menu"/></svg></button>
+    <div class="nav wrap">
+      <a class="logo" href="#inicio" aria-label="Daniel Vieira — início"><span>&lt;</span>DV<span> /&gt;</span></a>
+      <nav class="navigation nav-links" id="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a><a href="#projetos">Projetos</a><a href="#habilidades">Habilidades</a><a href="#curriculo">Contato</a>
+      </nav>
+      <a class="nav-resume" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Currículo</a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
       <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
-    </nav>
+    </div>
   </header>
   <main id="conteudo">
     <section class="hero" id="inicio" aria-labelledby="hero-title">
       <div class="wrap">
-        <div class="hero-main" id="hero-main">
-          <div class="hero-copy">
-            <p class="intro eyebrow">Daniel Vieira Fernandes <span class="accent">/</span> Software Engineer</p>
-            <h1 id="hero-title">Sistemas resilientes.<br><span class="gradient-text">Engenharia .NET<br>de ponta a ponta.</span></h1>
-            <p class="role mono">C# / .NET 10 · Blazor (WASM &amp; Server)<br>APIs Robustas · Observabilidade &amp; Auditoria</p>
-            <div class="hero-description">
-              <p>Desenvolvo APIs e interfaces em .NET e Blazor, com foco em código bem estruturado, comunicação em tempo real e sistemas confiáveis em produção.</p>
-            </div>
-            <div class="actions"><a class="btn btn-primary" href="#projetos">Explorar Projetos <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a><a class="btn" id="download-cv" href="Daniel_Vieira_Desenvolvedor.pdf" download>Baixar CV <svg class="icon" aria-hidden="true"><use href="#download"/></svg></a></div>
-          </div>
-          <div class="network" id="network">
-            <div class="network-fallback" aria-hidden="true"><span>APIs · SERVICES · DATA</span><strong>Arquiteturas distribuídas</strong><span>Conectividade com propósito.</span></div>
-            <canvas id="network-canvas" role="img" aria-label="Rede tridimensional de serviços interconectados, representando uma arquitetura distribuída"></canvas>
-            <div class="network-label"><span>FIG. 01 / DISTRIBUTED NETWORK</span><button class="motion-toggle" id="motion-toggle" aria-label="Pausar animação da rede" aria-pressed="false" hidden>Ⅱ</button></div>
-          </div>
+      <div class="hero-main" id="hero-main">
+        <div class="hero-copy">
+          <p class="intro eyebrow">Desenvolvedor de software</p>
+          <h1 id="hero-title" aria-label="Daniel Vieira Fernandes">Daniel<br><span class="gradient-text">Vieira.</span></h1>
+          <p class="hero-description">Desenvolvo aplicações web com C# e .NET.<br>Do backend em ASP.NET Core à interface em Blazor.</p>
+          <div class="actions"><a class="btn btn-primary" href="#projetos"><svg class="icon" aria-hidden="true"><use href="#code"/></svg>Ver projetos</a><a class="btn" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Baixar currículo</a></div>
         </div>
-        <div class="hero-bottom"><div><span>Decisões orientadas a domínio e segurança.</span><span>Comunicação em tempo real e WebSockets.</span><span>Telemetria, auditoria e rastreabilidade ativa.</span></div><a href="#projetos" class="text-link">Explore o trabalho <svg class="icon" aria-hidden="true"><use href="#down"/></svg></a></div>
+        <div class="network" id="network">
+          <div class="network-fallback" aria-hidden="true">&lt;dv /&gt;</div>
+          <canvas id="network-canvas" aria-hidden="true"></canvas>
+        </div>
+      </div>
+      <div class="hero-bottom"><span>C# / .NET / Blazor / TypeScript</span><div><a href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer" class="btn"><svg class="icon" aria-hidden="true"><use href="#github"/></svg>GitHub</a><a href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer" class="btn"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg>LinkedIn</a><a href="mailto:fernandesdanielvieira@gmail.com" class="btn"><svg class="icon" aria-hidden="true"><use href="#email"/></svg>E-mail</a></div></div>
       </div>
     </section>
-    <section class="section wrap" id="projetos" aria-labelledby="projects-title">
-      <div class="section-heading"><div><p class="eyebrow"><span class="accent">01 /</span> Projetos selecionados</p><h2 id="projects-title">A engenharia, na prática.</h2></div><a class="text-link" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer">Todos os repositórios <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-      <div class="projects">
-        <article class="project featured">
-          <div class="project-body">
-            <div class="project-kicker">Projeto em destaque / Full Stack .NET</div>
-            <div class="project-heading"><h3>Health Check Monitor<small>& Observability Dashboard</small></h3><a class="repo-link" href="https://github.com/DanielVieiraFernandes/Health-Check-Monitor" target="_blank" rel="noopener noreferrer" aria-label="Explorar Health Check Monitor no GitHub"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-            <p>Telemetria assíncrona, tolerância a falhas e monitoramento em tempo real. Interface reativa rica em Blazor, com MudBlazor e Syncfusion para visualização analítica de uptime e integridade de serviços, APIs, Redis e SQL.</p>
-            <div class="engineering"><span>Sondas para APIs, SQL e Redis</span><span>Observabilidade de ponta a ponta</span></div>
-            <div class="tags"><span class="tag">C#</span><span class="tag">.NET 10</span><span class="tag">Blazor</span><span class="tag">MudBlazor</span><span class="tag">Syncfusion</span><span class="tag">Observability</span><span class="tag">Redis</span><span class="tag">Docker</span></div>
-          </div>
+    <section class="section about wrap" id="sobre" aria-labelledby="about-title">
+      <div><p class="eyebrow">01 / Sobre</p><h2 id="about-title">Um pouco<br>sobre mim.</h2></div>
+      <div class="about-text"><p>Sou Daniel Vieira Fernandes, desenvolvedor com foco em C# e .NET. Trabalho na criação de APIs, interfaces web e integrações entre aplicações.</p><p>Uso Blazor no frontend e também desenvolvo com TypeScript e NestJS. Meus projetos incluem monitoramento de serviços, gestão financeira e aplicações com testes automatizados.</p></div>
+    </section>
+      <section class="section wrap" id="projetos" aria-labelledby="projects-title">
+        <div class="section-heading"><div><p class="eyebrow">02 / Projetos</p><h2 id="projects-title">O que eu desenvolvi.</h2></div><a class="text-link btn" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg>Ver GitHub</a></div>
+        <div class="projects">
+        <article class="project featured"><div class="project-body">
+          <div class="project-top"><span class="project-type">Aplicação web · C# / .NET</span><span class="project-index" aria-hidden="true">01</span></div>
+          <h3>Health Check Monitor </h3>
+          <p>Um painel para acompanhar a disponibilidade de APIs, bancos de dados e Redis.</p>
+          <ul class="project-details"><li>Verificações automáticas dos serviços em segundo plano.</li><li>Interface em Blazor para acompanhar o status e visualizar os dados.</li></ul>
+          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do Health Check Monitor"><li>C# / .NET</li><li>Blazor</li><li>Redis</li><li>Docker</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/Health-Check-Monitor" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Health Check Monitor">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+        </div>
           <div class="feature-visual" aria-hidden="true">
             <div class="dashboard"><div class="dashboard-top"><span>◈ Health Check Monitor</span><span class="accent">Blazor UI</span></div><div class="dashboard-body"><div class="dashboard-label">Service health / visão geral</div>
               <div class="service-row"><span>API services</span><span class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="service-dot"></span></div>
@@ -98,239 +82,46 @@
           </div>
         </article>
         <article class="project"><div class="project-body">
-          <div class="project-kicker">02 / Core Banking Domain</div>
-          <div class="project-heading"><h3>CashFlow</h3><a class="repo-link" href="https://github.com/DanielVieiraFernandes/CashFlow" target="_blank" rel="noopener noreferrer" aria-label="Explorar CashFlow no GitHub"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-          <p>Gestão orçamentária e controle transacional de alto rigor contábil. DDD estrito, isolamento de casos de uso e cobertura com xUnit.</p>
-          <div class="engineering"><span>Domain-Driven Design</span><span>Testes automatizados</span></div>
-          <div class="mini-diagram" aria-hidden="true"><span>API</span>→<span class="highlight">Domain</span>←<span>Persistence</span></div>
-          <div class="tags"><span class="tag">.NET 10</span><span class="tag">DDD</span><span class="tag">Clean Architecture</span><span class="tag">xUnit</span><span class="tag">PostgreSQL</span></div>
+          <div class="project-top"><span class="project-type">Gestão financeira · C# / .NET</span><span class="project-index" aria-hidden="true">02</span></div>
+          <h3>CashFlow </h3>
+          <p>Uma aplicação para organizar o orçamento e controlar transações financeiras.</p>
+          <ul class="project-details"><li>Regras financeiras separadas do acesso ao banco de dados.</li><li>Testes automatizados com xUnit para verificar essas regras.</li></ul>
+          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do CashFlow"><li>.NET</li><li>PostgreSQL</li><li>xUnit</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/CashFlow" target="_blank" rel="noopener noreferrer" aria-label="Ver código do CashFlow">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
         </div></article>
         <article class="project"><div class="project-body">
-          <div class="project-kicker">03 / Modular Clean Backend</div>
-          <div class="project-heading"><h3>05-NEST-CLEAN</h3><a class="repo-link" href="https://github.com/DanielVieiraFernandes/05-NEST-CLEAN" target="_blank" rel="noopener noreferrer" aria-label="Explorar 05-NEST-CLEAN no GitHub"><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-          <p>Arquitetura backend escalável com baixo acoplamento. Clean Architecture em NestJS com metodologia TDD usando Vitest.</p>
-          <div class="engineering"><span>Baixo acoplamento</span><span>TDD com Vitest</span></div>
-          <div class="mini-diagram" aria-hidden="true"><span>Red</span>→<span class="highlight">Green</span>→<span>Refactor</span></div>
-          <div class="tags"><span class="tag">NestJS</span><span class="tag">TypeScript</span><span class="tag">TDD</span><span class="tag">Vitest</span><span class="tag">SOLID</span></div>
+          <div class="project-top"><span class="project-type">Backend · TypeScript</span><span class="project-index" aria-hidden="true">03</span></div>
+          <h3>05-NEST-CLEAN </h3>
+          <p>Um projeto de backend com NestJS, organizado em módulos e desenvolvido com testes.</p>
+          <ul class="project-details"><li>Separação entre regras da aplicação e infraestrutura.</li><li>Desenvolvimento guiado por testes com Vitest.</li></ul>
+          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do 05-NEST-CLEAN"><li>NestJS</li><li>TypeScript</li><li>Vitest</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/05-NEST-CLEAN" target="_blank" rel="noopener noreferrer" aria-label="Ver código do 05-NEST-CLEAN">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
         </div></article>
       </div>
-    </section>
-    <section class="section wrap" id="toolbox" aria-labelledby="toolbox-title">
-      <div class="section-heading"><div><p class="eyebrow"><span class="accent">02 /</span> Toolbox</p><h2 id="toolbox-title">Profundidade em cada camada.</h2></div><p>Do backend à interface, ferramentas escolhidas para o problema certo.</p></div>
-      <div class="toolbox">
-        <article class="tool"><span class="tool-number">01 / BACKEND &amp; CORE</span><h3>Backend &amp; Core</h3><ul><li>C# / .NET 10</li><li>ASP.NET Core</li><li>NestJS</li><li>TypeScript</li><li>Node.js</li></ul></article>
-        <article class="tool"><span class="tool-number">02 / INTERFACE &amp; TEMPO REAL</span><h3>Interface &amp; Tempo Real</h3><ul><li>Blazor WebAssembly / Server</li><li>MudBlazor</li><li>Syncfusion</li><li>SignalR</li><li>WebSockets</li><li>Tailwind CSS</li></ul></article>
-        <article class="tool"><span class="tool-number">03 / AUDITORIA, LOGS &amp; QUALIDADE</span><h3>Auditoria, Logs &amp; Qualidade</h3><ul><li>Serilog + Seq (Structured Logging)</li><li>Health Checks</li><li>xUnit</li><li>Vitest</li><li>TDD</li><li>DDD</li><li>Clean Architecture</li><li>Pipelines de Testes Automatizados</li></ul></article>
-        <article class="tool"><span class="tool-number">04 / PERSISTÊNCIA &amp; PROTOCOLOS</span><h3>Persistência &amp; Protocolos</h3><ul><li>PostgreSQL</li><li>Redis</li><li>SQLite</li><li>Entity Framework Core</li><li>Prisma ORM</li><li>WebServices SOAP/REST</li><li>Serialização &amp; Protocolos Nativos</li></ul></article>
-        <article class="tool"><span class="tool-number">05 / CLOUD &amp; DEVOPS</span><h3>Cloud &amp; DevOps</h3><ul><li>Docker</li><li>Azure DevOps (CI/CD Pipelines)</li><li>GitHub Actions</li><li>Cloudflare</li></ul></article>
-        <article class="tool tool-frontier"><span class="tool-number">06 / PRÓXIMA FRONTEIRA</span><h3>AI Agents &amp; Orquestração</h3><p class="frontier-note">Exploração contínua, além do core .NET.</p><ul><li>Autonomous AI Agents</li><li>Orquestração Multi-Agente</li><li>Hermes Agent</li><li>Tool Calling &amp; Integração de Modelos</li></ul></article>
-      </div>
-      <p class="principle"><span class="accent">↳</span> Qualidade desde o domínio. Visibilidade até a produção.</p>
-    </section>
-  </main>
-  <footer class="contact" id="contato">
-    <div class="wrap">
-      <div class="contact-main">
-        <div class="contact-copy"><p class="eyebrow"><span class="accent">03 /</span> Conexão Direta</p><h2>Vamos nos conectar?<br><span class="gradient-text">Estou aberto a novos desafios.</span></h2><p>Tem uma oportunidade no seu time ou uma ideia para trocar? Me chama no LinkedIn ou por e-mail.</p></div>
-        <div class="contact-actions"><a class="btn btn-primary" href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer">Conectar no LinkedIn <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a><a class="btn email-button" id="copy-contact" href="mailto:fernandesdanielvieira@gmail.com" aria-label="Enviar e-mail para fernandesdanielvieira@gmail.com e copiar o endereço"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span>fernandesdanielvieira@gmail.com</span></a><span class="email-hint">Clique para abrir seu e-mail e copiar o endereço.</span></div>
-      </div>
-      <div class="footer-bottom"><span>© <span id="year">2026</span> Daniel Vieira Fernandes</span><span class="mono">Software, com intenção.</span><div class="socials"><a href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div>
-    </div>
-  </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-  <script>
-    (() => {
-      'use strict';
-      const menu = document.getElementById('menu-toggle');
-      const links = document.getElementById('nav-links');
-      function closeMenu() {
-        links.classList.remove('open');
-        menu.setAttribute('aria-expanded', 'false');
-        menu.setAttribute('aria-label', 'Abrir menu');
-      }
-      menu.addEventListener('click', () => {
-        const open = menu.getAttribute('aria-expanded') !== 'true';
-        links.classList.toggle('open', open);
-        menu.setAttribute('aria-expanded', String(open));
-        menu.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-      });
-      links.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-      document.addEventListener('click', event => { if (!event.target.closest('.nav')) closeMenu(); });
-      document.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && menu.getAttribute('aria-expanded') === 'true') { closeMenu(); menu.focus(); }
-      });
-      matchMedia('(min-width:761px)').addEventListener('change', closeMenu);
-      const progress = document.getElementById('reading-progress');
-      const navItems = [...links.querySelectorAll('a')];
-      const sections = navItems.map(link => document.querySelector(link.getAttribute('href')));
-      let scrollPending = false;
-      function updateProgress() {
-        const max = document.documentElement.scrollHeight - window.innerHeight;
-        const fraction = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-        progress.style.transform = `scaleX(${fraction})`;
-        let active = -1;
-        sections.forEach((section, index) => { if (section.getBoundingClientRect().top <= 180) active = index; });
-        if (max > 0 && fraction >= .999) active = sections.length - 1;
-        navItems.forEach((link, index) => {
-          if (index === active) link.setAttribute('aria-current', 'location');
-          else link.removeAttribute('aria-current');
-        });
-        scrollPending = false;
-      }
-      function queueProgress() {
-        if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateProgress); }
-      }
-      window.addEventListener('scroll', queueProgress, {passive:true});
-      window.addEventListener('resize', queueProgress);
-      window.addEventListener('load', queueProgress);
-      window.addEventListener('pageshow', queueProgress);
-      const pageSizeObserver = new ResizeObserver(queueProgress);
-      pageSizeObserver.observe(document.body);
-      updateProgress();
-      document.getElementById('year').textContent = new Date().getFullYear();
-      let toastTimer;
-      function notify(message) {
-        const toast = document.getElementById('toast');
-        clearTimeout(toastTimer); toast.textContent = message; toast.classList.add('visible');
-        toastTimer = setTimeout(() => toast.classList.remove('visible'), 5000);
-      }
-      document.getElementById('copy-contact').addEventListener('click', async () => {
-        const email = 'fernandesdanielvieira@gmail.com';
-        try { await navigator.clipboard.writeText(email); notify('E-mail copiado para a área de transferência!'); }
-        catch {
-          const field = document.createElement('textarea');
-          field.value = email; field.setAttribute('aria-label', 'Endereço de e-mail');
-          field.style.cssText = 'position:fixed;left:-9999px;top:0';
-          document.body.appendChild(field); field.select();
-          let copied = false;
-          try { copied = document.execCommand('copy'); } catch { copied = false; }
-          field.remove(); document.getElementById('copy-contact').focus({preventScroll:true});
-          notify(copied ? 'E-mail copiado para a área de transferência!' : 'Não foi possível copiar automaticamente. E-mail: fernandesdanielvieira@gmail.com');
-        }
-      });
-    })();
+      </section>
 
-    window.addEventListener('load', () => {
-      'use strict';
-      const shell = document.getElementById('network');
-      const canvas = document.getElementById('network-canvas');
-      const toggle = document.getElementById('motion-toggle');
-      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-      let renderer;
-      try {
-        if (!window.THREE) return;
-        const scene = new THREE.Scene();
-        renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true, powerPreference:'low-power'});
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
-        renderer.setClearColor(0x08080c, 0);
-        const camera = new THREE.PerspectiveCamera(40, 1, .1, 30);
-        const network = new THREE.Group();
-        network.rotation.set(.12, -.35, -.12); scene.add(network);
-        // Four service clusters. Compute topology once and share GPU resources.
-        const centers = [new THREE.Vector3(-1.35,.8,0),new THREE.Vector3(1.15,1,.2),new THREE.Vector3(-.9,-1.15,.4),new THREE.Vector3(1.2,-.9,-.3)];
-        const positions = [], edges = [];
-        const perCluster = 12;
-        const nodeGeometry = new THREE.SphereGeometry(.036,8,6);
-        const hubGeometry = new THREE.IcosahedronGeometry(.115,1);
-        const nodeMaterial = new THREE.MeshBasicMaterial({color:0x9393df});
-        const hubMaterial = new THREE.MeshBasicMaterial({color:0xc0b2f0});
-        centers.forEach((center, cluster) => {
-          const base = positions.length; positions.push(center.clone());
-          for(let i=1;i<perCluster;i++) {
-            const theta = i*2.399963 + cluster*.5;
-            const y = 1 - 2*(i-.5)/(perCluster-1);
-            const radius = Math.sqrt(Math.max(0,1-y*y));
-            positions.push(new THREE.Vector3(Math.cos(theta)*radius*.95,y*.85,Math.sin(theta)*radius*.8).add(center));
-            edges.push([base,base+i]);
-            if(i>1) edges.push([base+i-1,base+i]);
-          }
-        });
-        edges.push([0,12],[12,36],[36,24],[24,0],[0,36],[12,24]);
-        positions.forEach((position,index) => {
-          const hub = index%perCluster === 0;
-          const mesh = new THREE.Mesh(hub ? hubGeometry : nodeGeometry, hub ? hubMaterial : nodeMaterial);
-          mesh.position.copy(position); network.add(mesh);
-        });
-        const linePositions = new Float32Array(edges.length*6);
-        edges.forEach(([a,b],i) => { positions[a].toArray(linePositions,i*6); positions[b].toArray(linePositions,i*6+3); });
-        const lineGeometry = new THREE.BufferGeometry();
-        lineGeometry.setAttribute('position',new THREE.BufferAttribute(linePositions,3));
-        const lineMaterial = new THREE.LineBasicMaterial({color:0x7771bc,transparent:true,opacity:.26,depthWrite:false});
-        network.add(new THREE.LineSegments(lineGeometry,lineMaterial));
-        const packetGeometry = new THREE.SphereGeometry(.026,6,4);
-        const packetMaterial = new THREE.MeshBasicMaterial({color:0xc4bbfa});
-        const packets = Array.from({length:12},(_,i) => {
-          const mesh = new THREE.Mesh(packetGeometry,packetMaterial); network.add(mesh);
-          return {mesh,edge:edges[(i*7)%edges.length],offset:i/12};
-        });
-        let paused = reducedMotion.matches, visible = true, contextLost = false, disposed = false;
-        let lastTime = null, elapsed = 0, lastFrame = 0;
-        const pointer = {x:0,y:0};
-        function render() { if (!contextLost && !disposed) renderer.render(scene,camera); }
-        function resize() {
-          if(disposed || !shell.clientWidth || !shell.clientHeight) return;
-          renderer.setSize(shell.clientWidth,shell.clientHeight,false);
-          camera.aspect = shell.clientWidth/shell.clientHeight;
-          camera.position.z = camera.aspect < 1.1 ? 10.5 : 8.8;
-          camera.updateProjectionMatrix(); render();
-        }
-        function animate(time) {
-          if(time-lastFrame < 1000/30) return;
-          lastFrame = time;
-          const dt = lastTime === null ? 0 : Math.min((time-lastTime)/1000,.06);
-          lastTime = time; elapsed += dt;
-          network.rotation.y += ((-.35+Math.sin(elapsed*.12)*.22+pointer.x*.18)-network.rotation.y)*Math.min(1,dt*2);
-          network.rotation.x += ((.12+pointer.y*.13)-network.rotation.x)*Math.min(1,dt*2);
-          network.position.y = Math.sin(elapsed*.4)*.065;
-          packets.forEach(packet => packet.mesh.position.lerpVectors(positions[packet.edge[0]],positions[packet.edge[1]],(elapsed*.13+packet.offset)%1));
-          render();
-        }
-        function syncAnimation() {
-          if(disposed) return;
-          lastTime = null; lastFrame = 0;
-          renderer.setAnimationLoop(!paused && visible && !document.hidden && !contextLost ? animate : null);
-          toggle.textContent = paused ? '▶' : 'Ⅱ';
-          toggle.setAttribute('aria-pressed',String(paused));
-          toggle.setAttribute('aria-label',paused ? 'Retomar animação da rede' : 'Pausar animação da rede');
-          render();
-        }
-        packets.forEach(packet => packet.mesh.position.lerpVectors(positions[packet.edge[0]],positions[packet.edge[1]],packet.offset));
-        const resizeObserver = new ResizeObserver(resize); resizeObserver.observe(shell); resize();
-        const visibilityObserver = new IntersectionObserver(entries => {visible=entries[0].isIntersecting;syncAnimation();});
-        visibilityObserver.observe(shell);
-        document.getElementById('hero-main').addEventListener('pointermove',event => {
-          if(paused || event.pointerType === 'touch') return;
-          const rect = shell.getBoundingClientRect();
-          pointer.x = Math.max(-1,Math.min(1,(event.clientX-rect.left)/rect.width*2-1));
-          pointer.y = Math.max(-1,Math.min(1,(event.clientY-rect.top)/rect.height*2-1));
-        });
-        document.getElementById('hero-main').addEventListener('pointerleave',()=>{pointer.x=0;pointer.y=0;});
-        toggle.addEventListener('click',()=>{paused=!paused;syncAnimation();});
-        reducedMotion.addEventListener('change',()=>{paused=reducedMotion.matches;syncAnimation();});
-        document.addEventListener('visibilitychange',syncAnimation);
-        canvas.addEventListener('webglcontextlost',event=>{
-          event.preventDefault(); contextLost=true; renderer.setAnimationLoop(null);
-          shell.classList.remove('ready'); toggle.hidden=true;
-        });
-        canvas.addEventListener('webglcontextrestored',()=>{
-          contextLost=false; shell.classList.add('ready'); toggle.hidden=false; resize(); syncAnimation();
-        });
-        shell.classList.add('ready'); toggle.hidden=false; syncAnimation();
-        window.addEventListener('pagehide',event=>{
-          renderer.setAnimationLoop(null);
-          if(!event.persisted) {
-            disposed=true; resizeObserver.disconnect(); visibilityObserver.disconnect();
-            [nodeGeometry,hubGeometry,lineGeometry,packetGeometry].forEach(item=>item.dispose());
-            [nodeMaterial,hubMaterial,lineMaterial,packetMaterial].forEach(item=>item.dispose()); renderer.dispose();
-          }
-        });
-        window.addEventListener('pageshow',event=>{if(event.persisted)syncAnimation();});
-      } catch(error) {
-        if(renderer) {renderer.setAnimationLoop(null);renderer.dispose();}
-        shell.classList.remove('ready');toggle.hidden=true;
-        console.warn('Visualização 3D indisponível. Conteúdo preservado.',error);
-      }
-    });
-  </script>
+      <section class="section skills wrap" id="habilidades" aria-labelledby="skills-title">
+        <div class="section-heading"><div><p class="eyebrow">03 / Habilidades</p><h2 id="skills-title">Tecnologias que uso.</h2></div></div>
+        <dl class="skills-list toolbox">
+          <div class="tool"><dt>Backend</dt><dd>C#, .NET, ASP.NET Core, TypeScript, Node.js e NestJS.</dd></div>
+          <div class="tool"><dt>Interfaces web</dt><dd>Blazor WebAssembly e Server, MudBlazor, Syncfusion e Tailwind CSS.</dd></div>
+          <div class="tool"><dt>Dados e integrações</dt><dd>PostgreSQL, Redis, SQLite, Entity Framework Core e Prisma. APIs REST e SOAP, SignalR e WebSockets.</dd></div>
+          <div class="tool"><dt>Testes e manutenção</dt><dd>xUnit, Vitest e TDD. Organização de código com DDD e Clean Architecture. Logs com Serilog e Seq e monitoramento com Health Checks.</dd></div>
+          <div class="tool"><dt>Entrega e hospedagem</dt><dd>Docker, Azure DevOps, GitHub Actions e Cloudflare.</dd></div>
+        <div class="tool tool-frontier"><dt>O que estou estudando</dt><dd>Agentes de IA, integração com modelos e orquestração de agentes, incluindo o Hermes Agent.</dd></div>
+        </dl>
+      </section>
+
+      <section class="section curriculum wrap" id="curriculo" aria-labelledby="contact-title">
+        <div class="section-heading"><div><p class="eyebrow">04 / Contato</p><h2 id="contact-title">Vamos conversar.</h2></div></div>
+        <div class="resume-card"><div class="resume-title"><svg class="icon" aria-hidden="true"><use href="#file"/></svg><div><h3>Meu currículo</h3><p>Daniel Vieira Fernandes · PDF</p></div></div><div class="resume-actions"><a class="text-link btn" href="Daniel_Vieira_Desenvolvedor.pdf" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#file"/></svg>Abrir PDF</a><a class="btn btn-primary" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Baixar</a></div></div>
+        <p class="contact-intro">Para conversar sobre uma vaga ou um projeto, entre em contato por e-mail ou LinkedIn.</p>
+        <div class="contact-options">
+          <article class="contact-option"><a class="btn contact-button" href="mailto:fernandesdanielvieira@gmail.com"><svg class="icon" aria-hidden="true"><use href="#email"/></svg><span><strong>E-mail</strong><small>fernandesdanielvieira@gmail.com</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a><button class="copy-button" id="copy-email" type="button"><svg class="icon" aria-hidden="true"><use href="#copy"/></svg> Copiar endereço</button></article>
+          <article class="contact-option"><a class="btn contact-button" href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg><span><strong>LinkedIn</strong><small>Converse comigo</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></article>
+          <article class="contact-option"><a class="btn contact-button" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg><span><strong>GitHub</strong><small>Explore meus repositórios</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></article>
+        </div>
+      </section>
+      <footer class="wrap footer-bottom"><span>© <span id="year">2026</span> Daniel Vieira Fernandes</span><a href="#inicio" class="btn"><svg class="icon" aria-hidden="true"><use href="#up"/></svg>Voltar ao início</a></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>

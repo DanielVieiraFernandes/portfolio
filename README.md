@@ -1,8 +1,15 @@
 # Daniel Vieira Fernandes — Portfólio
 
-Portfólio em HTML, CSS e JavaScript, com Tailwind CSS e Three.js via CDN.
+Portfólio em HTML, CSS e JavaScript, com apresentação pessoal, projetos, habilidades, currículo e contato. A ilustração em Three.js é opcional: a navegação e o conteúdo continuam disponíveis sem WebGL ou sem acesso à biblioteca.
 
-Abra `index.html` no navegador. O botão **Baixar CV** usa o arquivo `Daniel_Vieira_Desenvolvedor.pdf` incluído no repositório.
+## Arquivos
+
+- `index.html`: conteúdo e links.
+- `styles.css`: estilos originais da branch main, com ajustes para os textos atuais e a seção de currículo.
+- `portfolio.js`: navegação, botão de copiar e-mail e ilustração 3D.
+- `Daniel_Vieira_Desenvolvedor.pdf`: currículo para abrir ou baixar.
+
+Abra `index.html` no navegador ou use um servidor HTTP local. A ilustração de cubos e cristal respeita a preferência de movimento reduzido e suspende a animação fora da tela. Os contatos são apresentados em botões com ícones.
 
 ## Publicar no GitHub Pages
 
