@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#08080c">
-  <meta name="description" content="Daniel Vieira Fernandes, desenvolvedor de software com foco em C# e .NET. Conheça meus projetos, habilidades, currículo e contatos.">
-  <title>Daniel Vieira — Desenvolvedor de software</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308080c'/%3E%3Ctext x='32' y='41' text-anchor='middle' font-family='sans-serif' font-size='26' fill='white'%3EDV%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#101014">
+  <meta name="description" content="Daniel Vieira, desenvolvedor C# e .NET. APIs, interfaces Blazor e integrações. Conheça meus projetos, habilidades e baixe meu currículo.">
+  <title>Daniel Vieira — Desenvolvedor C# e .NET</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23101014'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='sans-serif' font-size='28' fill='%23c6b5f7'%3Edv%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;550;600;650;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script defer src="portfolio.js"></script>
 </head>
 <body>
@@ -28,101 +27,118 @@
     <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8zm-10 9 10 5 10-5M2 17l10 5 10-5"/></symbol>
     <symbol id="up" viewBox="0 0 24 24"><path d="M12 20V4m-7 7 7-7 7 7"/></symbol>
   </defs></svg>
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-  <header class="header">
-    <div class="nav wrap">
-      <a class="logo" href="#inicio" aria-label="Daniel Vieira — início"><span>&lt;</span>DV<span> /&gt;</span></a>
-      <nav class="navigation nav-links" id="nav-links" aria-label="Navegação principal">
-        <a href="#sobre">Sobre</a><a href="#projetos">Projetos</a><a href="#habilidades">Habilidades</a><a href="#curriculo">Contato</a>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="nav-shell container">
+      <a class="wordmark" href="#inicio" aria-label="Daniel Vieira — início">dv<span>.</span></a>
+      <nav class="navigation" aria-label="Navegação principal" id="navigation">
+        <a href="#projetos">Projetos</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contato">Contato</a>
       </nav>
-      <a class="nav-resume" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Currículo</a>
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-links"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
-      <div class="reading-progress" aria-hidden="true"><span id="reading-progress"></span></div>
+      <a class="header-resume" href="Daniel_Vieira_Desenvolvedor.pdf" target="_blank" rel="noopener noreferrer">Currículo <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+      <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-controls="navigation" aria-expanded="false" hidden><span></span><span></span></button>
     </div>
   </header>
   <main id="conteudo">
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="wrap">
-      <div class="hero-main" id="hero-main">
-        <div class="hero-copy">
-          <p class="intro eyebrow">Desenvolvedor de software</p>
-          <h1 id="hero-title" aria-label="Daniel Vieira Fernandes">Daniel<br><span class="gradient-text">Vieira.</span></h1>
-          <p class="hero-description">Desenvolvo aplicações web com C# e .NET.<br>Do backend em ASP.NET Core à interface em Blazor.</p>
-          <div class="actions"><a class="btn btn-primary" href="#projetos"><svg class="icon" aria-hidden="true"><use href="#code"/></svg>Ver projetos</a><a class="btn" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Baixar currículo</a></div>
+    <section class="hero container" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-copy" id="sobre">
+        <p class="intro"><span class="intro-line" aria-hidden="true"></span> Daniel Vieira <span class="intro-divider">/</span> Desenvolvedor de software</p>
+        <h1 id="hero-title">Do backend<br>à <span>experiência.</span></h1>
+        <p class="hero-description">Desenvolvo aplicações com <strong>C# e .NET</strong>.<br>APIs, interfaces em Blazor e integrações que<br class="desktop-break"> conectam sistemas e pessoas.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="Daniel_Vieira_Desenvolvedor.pdf" target="_blank" rel="noopener noreferrer">Ver currículo <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="button button-secondary" href="#contato">Vamos conversar <svg class="icon" aria-hidden="true"><use href="#email"/></svg></a>
         </div>
-        <div class="network" id="network">
-          <div class="network-fallback" aria-hidden="true">&lt;dv /&gt;</div>
-          <canvas id="network-canvas" aria-hidden="true"></canvas>
+        <div class="social-links" aria-label="Redes profissionais">
+          <a href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg> GitHub</a>
+          <a href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg> LinkedIn</a>
         </div>
       </div>
-      <div class="hero-bottom"><span>C# / .NET / Blazor / TypeScript</span><div><a href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer" class="btn"><svg class="icon" aria-hidden="true"><use href="#github"/></svg>GitHub</a><a href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer" class="btn"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg>LinkedIn</a><a href="mailto:fernandesdanielvieira@gmail.com" class="btn"><svg class="icon" aria-hidden="true"><use href="#email"/></svg>E-mail</a></div></div>
+      <figure class="hero-portrait">
+        <div class="portrait-halo" aria-hidden="true"></div>
+        <div class="portrait-frame"><img src="assets/daniel-avatar.png" alt="Retrato ilustrado de Daniel Vieira" width="1254" height="1254" fetchpriority="high" decoding="async"></div>
+        <figcaption><span class="portrait-dot" aria-hidden="true"></span> Lógica, cuidado e um pouco de criatividade.</figcaption>
+        <span class="portrait-code" aria-hidden="true">&lt;dv /&gt;</span>
+      </figure>
+      <div class="hero-foot"><p>C# &amp; .NET <span>·</span> Blazor <span>·</span> TypeScript <span>·</span> Inteligência artificial</p><a href="#projetos">Conheça meu trabalho <span class="scroll-arrow" aria-hidden="true">↓</span></a></div>
+    </section>
+
+    <section class="projects-section container section" id="projetos" aria-labelledby="projects-title">
+      <div class="section-heading" data-reveal>
+        <div><p class="eyebrow">PROJETOS SELECIONADOS</p><h2 id="projects-title">Da ideia à aplicação<span>.</span></h2></div>
+        <p>Uma seleção do que construo<br>e de como resolvo problemas.</p>
       </div>
-    </section>
-    <section class="section about wrap" id="sobre" aria-labelledby="about-title">
-      <div class="about-heading"><p class="eyebrow">01 / Sobre</p><h2 id="about-title">Um pouco sobre mim.</h2></div>
-      <img class="about-portrait" src="assets/daniel-vieira.png" alt="Foto de Daniel Vieira Fernandes" width="400" height="400" loading="lazy" decoding="async">
-      <div class="about-text"><p>Sou Daniel Vieira Fernandes, desenvolvedor com foco em C# e .NET. Trabalho na criação de APIs, interfaces web e integrações entre aplicações.</p><p>Uso Blazor no frontend e também desenvolvo com TypeScript e NestJS. Meus projetos incluem monitoramento de serviços, gestão financeira e aplicações com testes automatizados.</p></div>
-    </section>
-      <section class="section wrap" id="projetos" aria-labelledby="projects-title">
-        <div class="section-heading"><div><p class="eyebrow">02 / Projetos</p><h2 id="projects-title">O que eu desenvolvi.</h2></div><a class="text-link btn" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg>Ver GitHub</a></div>
-        <div class="projects">
-        <article class="project featured"><div class="project-body">
-          <div class="project-top"><span class="project-type">Aplicação web · C# / .NET</span><span class="project-index" aria-hidden="true">01</span></div>
-          <h3>Health Check Monitor </h3>
-          <p>Um painel para acompanhar a disponibilidade de APIs, bancos de dados e Redis.</p>
-          <ul class="project-details"><li>Verificações automáticas dos serviços em segundo plano.</li><li>Interface em Blazor para acompanhar o status e visualizar os dados.</li></ul>
-          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do Health Check Monitor"><li>C# / .NET</li><li>Blazor</li><li>Redis</li><li>Docker</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/Health-Check-Monitor" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Health Check Monitor">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+      <article class="project project-featured" data-reveal aria-labelledby="health-title">
+        <div class="project-content">
+          <p class="project-category"><span class="category-dot" aria-hidden="true"></span> Monitoramento de serviços</p>
+          <h3 id="health-title">Health Check Monitor</h3>
+          <p class="project-description">Acompanhe a disponibilidade de APIs, bancos de dados e Redis em um só lugar.</p>
+          <p class="project-solution">Verificações em segundo plano e um painel em Blazor para visualizar o estado dos serviços.</p>
+          <ul class="tags" aria-label="Tecnologias do Health Check Monitor"><li>C# / .NET</li><li>Blazor</li><li>Redis</li><li>Docker</li></ul>
+          <a class="project-link" href="https://github.com/DanielVieiraFernandes/Health-Check-Monitor" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Health Check Monitor">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
         </div>
-          <div class="feature-visual" aria-hidden="true">
-            <div class="dashboard"><div class="dashboard-top"><span>◈ Health Check Monitor</span><span class="accent">Blazor UI</span></div><div class="dashboard-body"><div class="dashboard-label">Service health / visão geral</div>
-              <div class="service-row"><span>API services</span><span class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="service-dot"></span></div>
-              <div class="service-row"><span>SQL database</span><span class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="service-dot"></span></div>
-              <div class="service-row"><span>Redis cache</span><span class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="service-dot"></span></div>
-              <div class="dashboard-bottom"><span>Background probes</span><span>MudBlazor / Syncfusion</span></div>
-            </div></div><p class="visual-caption">Interface conceitual · dados ilustrativos</p>
+        <figure class="project-visual">
+          <div class="monitor-demo" aria-hidden="true">
+            <div class="monitor-top"><span class="monitor-logo">◈</span><span>Health Check<br><small>Visão geral dos serviços</small></span><span class="monitor-menu">···</span></div>
+            <div class="monitor-summary"><span class="health-dot"></span> Todos os serviços operacionais</div>
+            <div class="service"><span>API</span><span class="service-history"></span><span class="service-state">Online</span></div>
+            <div class="service"><span>Database</span><span class="service-history"></span><span class="service-state">Online</span></div>
+            <div class="service"><span>Redis</span><span class="service-history"></span><span class="service-state">Online</span></div>
+            <div class="monitor-bottom"><span>Verificações em segundo plano</span><svg class="icon" aria-hidden="true"><use href="#layers"/></svg></div>
+          </div>
+          <figcaption>Representação conceitual da interface.</figcaption>
+        </figure>
+      </article>
+      <div class="project-pair">
+        <article class="project project-small" data-reveal aria-labelledby="cash-title">
+          <div class="project-content">
+            <div class="project-small-top"><p class="project-category">Gestão financeira</p><span class="project-symbol" aria-hidden="true">↗</span></div>
+            <h3 id="cash-title">CashFlow</h3>
+            <p class="project-description">Orçamento e transações financeiras com regras de negócio separadas do acesso aos dados.</p>
+            <ul class="tags" aria-label="Tecnologias do CashFlow"><li>.NET</li><li>PostgreSQL</li><li>xUnit</li></ul>
+            <details class="technical-details"><summary>Detalhes técnicos <span aria-hidden="true">+</span></summary><p>Organização das regras financeiras em uma camada própria e testes automatizados com xUnit para verificar seu comportamento.</p></details>
+            <a class="project-link" href="https://github.com/DanielVieiraFernandes/CashFlow" target="_blank" rel="noopener noreferrer" aria-label="Ver código do CashFlow">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
           </div>
         </article>
-        <article class="project"><div class="project-body">
-          <div class="project-top"><span class="project-type">Gestão financeira · C# / .NET</span><span class="project-index" aria-hidden="true">02</span></div>
-          <h3>CashFlow </h3>
-          <p>Uma aplicação para organizar o orçamento e controlar transações financeiras.</p>
-          <ul class="project-details"><li>Regras financeiras separadas do acesso ao banco de dados.</li><li>Testes automatizados com xUnit para verificar essas regras.</li></ul>
-          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do CashFlow"><li>.NET</li><li>PostgreSQL</li><li>xUnit</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/CashFlow" target="_blank" rel="noopener noreferrer" aria-label="Ver código do CashFlow">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-        </div></article>
-        <article class="project"><div class="project-body">
-          <div class="project-top"><span class="project-type">Backend · TypeScript</span><span class="project-index" aria-hidden="true">03</span></div>
-          <h3>05-NEST-CLEAN </h3>
-          <p>Um projeto de backend com NestJS, organizado em módulos e desenvolvido com testes.</p>
-          <ul class="project-details"><li>Separação entre regras da aplicação e infraestrutura.</li><li>Desenvolvimento guiado por testes com Vitest.</li></ul>
-          <div class="project-bottom"><ul class="tags" aria-label="Tecnologias do 05-NEST-CLEAN"><li>NestJS</li><li>TypeScript</li><li>Vitest</li></ul><a class="source-link btn" href="https://github.com/DanielVieiraFernandes/05-NEST-CLEAN" target="_blank" rel="noopener noreferrer" aria-label="Ver código do 05-NEST-CLEAN">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
-        </div></article>
+        <article class="project project-small" data-reveal aria-labelledby="nest-title">
+          <div class="project-content">
+            <div class="project-small-top"><p class="project-category">Arquitetura de backend</p><span class="project-symbol" aria-hidden="true">&lt;/&gt;</span></div>
+            <h3 id="nest-title">Nest Clean</h3>
+            <p class="project-description">Backend modular em NestJS com separação entre domínio e infraestrutura, desenvolvido com testes.</p>
+            <ul class="tags" aria-label="Tecnologias do Nest Clean"><li>NestJS</li><li>TypeScript</li><li>Vitest</li></ul>
+            <details class="technical-details"><summary>Detalhes técnicos <span aria-hidden="true">+</span></summary><p>Clean Architecture para separar as regras da aplicação da infraestrutura. Desenvolvimento guiado por testes com Vitest.</p></details>
+            <a class="project-link" href="https://github.com/DanielVieiraFernandes/05-NEST-CLEAN" target="_blank" rel="noopener noreferrer" aria-label="Ver código do Nest Clean">Ver código <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+          </div>
+        </article>
       </div>
-      </section>
+      <a class="more-projects" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg> Todos os repositórios no GitHub <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+    </section>
 
-      <section class="section skills wrap" id="habilidades" aria-labelledby="skills-title">
-        <div class="section-heading"><div><p class="eyebrow">03 / Habilidades</p><h2 id="skills-title">Tecnologias que uso.</h2></div></div>
-        <dl class="skills-list toolbox">
-          <div class="tool"><dt>Backend</dt><dd>C#, .NET, ASP.NET Core, TypeScript, Node.js e NestJS.</dd></div>
-          <div class="tool"><dt>Interfaces web</dt><dd>Blazor WebAssembly e Server, MudBlazor, Syncfusion e Tailwind CSS.</dd></div>
-          <div class="tool"><dt>Dados e integrações</dt><dd>PostgreSQL, Redis, SQLite, Entity Framework Core e Prisma. APIs REST e SOAP, SignalR e WebSockets.</dd></div>
-          <div class="tool"><dt>Testes e manutenção</dt><dd>xUnit, Vitest e TDD. Organização de código com DDD e Clean Architecture. Logs com Serilog e Seq e monitoramento com Health Checks.</dd></div>
-          <div class="tool"><dt>Entrega e hospedagem</dt><dd>Docker, Azure DevOps, GitHub Actions e Cloudflare.</dd></div>
-        <div class="tool tool-frontier"><dt>O que estou estudando</dt><dd>Agentes de IA, integração com modelos e orquestração de agentes, incluindo o Hermes Agent.</dd></div>
-        </dl>
-      </section>
+    <section class="skills-section container section" id="habilidades" aria-labelledby="skills-title">
+      <div class="skills-intro" data-reveal><p class="eyebrow">HABILIDADES</p><h2 id="skills-title">As ferramentas.<br>E o que faço<br>com elas<span>.</span></h2><p>Do desenvolvimento ao deploy,<br>com atenção à organização do código<br>e à manutenção da aplicação.</p></div>
+      <dl class="skills-list">
+        <div class="skill-row" data-reveal><dt><span aria-hidden="true">01</span> Backend</dt><dd><strong>APIs e regras de negócio.</strong><p>C# · .NET · ASP.NET Core · TypeScript · NestJS</p></dd></div>
+        <div class="skill-row" data-reveal><dt><span aria-hidden="true">02</span> Interfaces</dt><dd><strong>Aplicações web interativas.</strong><p>Blazor · MudBlazor · Syncfusion · Tailwind CSS</p></dd></div>
+        <div class="skill-row" data-reveal><dt><span aria-hidden="true">03</span> Dados e integrações</dt><dd><strong>Sistemas que conversam entre si.</strong><p>PostgreSQL · Redis · EF Core · REST · SOAP · SignalR</p></dd></div>
+        <div class="skill-row" data-reveal><dt><span aria-hidden="true">04</span> Qualidade e entrega</dt><dd><strong>Testes e automação de entregas.</strong><p>xUnit · Vitest · Docker · GitHub Actions · Azure DevOps</p></dd></div>
+        <div class="skill-row" data-reveal><dt><span aria-hidden="true">05</span> Inteligência artificial</dt><dd><strong>Modelos integrados às aplicações.</strong><p>Agentes de IA · Integração com modelos · Orquestração de agentes</p></dd></div>
+      </dl>
+    </section>
 
-      <section class="section curriculum wrap" id="curriculo" aria-labelledby="contact-title">
-        <div class="section-heading"><div><p class="eyebrow">04 / Contato</p><h2 id="contact-title">Vamos conversar.</h2></div></div>
-        <div class="resume-card"><div class="resume-title"><svg class="icon" aria-hidden="true"><use href="#file"/></svg><div><h3>Meu currículo</h3><p>Daniel Vieira Fernandes · PDF</p></div></div><div class="resume-actions"><a class="text-link btn" href="Daniel_Vieira_Desenvolvedor.pdf" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#file"/></svg>Abrir PDF</a><a class="btn btn-primary" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg>Baixar</a></div></div>
-        <p class="contact-intro">Para conversar sobre uma vaga ou um projeto, entre em contato por e-mail ou LinkedIn.</p>
+    <section class="contact-section container section" id="contato" aria-labelledby="contact-title">
+      <span class="legacy-anchor" id="curriculo" aria-hidden="true"></span>
+      <div class="contact-panel" data-reveal>
+        <div class="contact-copy"><p class="eyebrow">CONTATO</p><h2 id="contact-title">Boas ideias começam<br>com uma conversa<span>.</span></h2><p>Tem uma vaga ou um projeto em mente?<br>Vamos falar sobre o próximo passo.</p><a class="button button-primary" href="mailto:fernandesdanielvieira@gmail.com">Enviar e-mail <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></div>
         <div class="contact-options">
-          <article class="contact-option"><a class="btn contact-button" href="mailto:fernandesdanielvieira@gmail.com"><svg class="icon" aria-hidden="true"><use href="#email"/></svg><span><strong>E-mail</strong><small>fernandesdanielvieira@gmail.com</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a><button class="copy-button" id="copy-email" type="button"><svg class="icon" aria-hidden="true"><use href="#copy"/></svg> Copiar endereço</button></article>
-          <article class="contact-option"><a class="btn contact-button" href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg><span><strong>LinkedIn</strong><small>Converse comigo</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></article>
-          <article class="contact-option"><a class="btn contact-button" href="https://github.com/DanielVieiraFernandes" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#github"/></svg><span><strong>GitHub</strong><small>Explore meus repositórios</small></span><svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a></article>
+          <div class="email-option"><span class="contact-label">E-MAIL</span><a class="email-address" href="mailto:fernandesdanielvieira@gmail.com">fernandesdanielvieira@gmail.com</a><button class="copy-button" id="copy-email" type="button" hidden><svg class="icon" aria-hidden="true"><use href="#copy"/></svg> Copiar endereço</button></div>
+          <a class="contact-option" href="https://www.linkedin.com/in/danielvieiradev/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#linkedin"/></svg> LinkedIn <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="contact-option" href="Daniel_Vieira_Desenvolvedor.pdf" download><svg class="icon" aria-hidden="true"><use href="#download"/></svg> Baixar currículo <span>PDF</span> <svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></a>
         </div>
-      </section>
-      <footer class="wrap footer-bottom"><span>© <span id="year">2026</span> Daniel Vieira Fernandes</span><a href="#inicio" class="btn"><svg class="icon" aria-hidden="true"><use href="#up"/></svg>Voltar ao início</a></footer>
+      </div>
+    </section>
   </main>
+  <footer class="footer container"><a class="wordmark" href="#inicio" aria-label="Daniel Vieira — voltar ao início">dv<span>.</span></a><p>© <span id="year">2026</span> Daniel Vieira Fernandes</p><a href="#inicio">Voltar ao topo <svg class="icon" aria-hidden="true"><use href="#up"/></svg></a></footer>
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
