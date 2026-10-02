@@ -141,16 +141,28 @@ img { display: block; max-width: 100%; }
 /* The developer card: the one bold moment on the page. */
 .card-stage { position: relative; z-index: 2; perspective: 1100px; justify-self: end; width: 100%; max-width: 380px; }
 .dev-card {
-  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%; --foil: 50%;
-  position: relative; border-radius: 26px; padding: 1.5px;
-  background: conic-gradient(from 210deg at 50% 50%, var(--mint), var(--blue), var(--violet), #ff9bd9, var(--mint));
-  transform: rotate(3deg) rotateX(var(--rx)) rotateY(var(--ry));
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%; --foil: 50%; --flip: 0deg;
+  position: relative; border-radius: 26px;
+  transform: rotate(3deg) rotateX(var(--rx)) rotateY(calc(var(--ry) + var(--flip)));
   transform-style: preserve-3d;
-  transition: transform .6s var(--ease-out);
+  transition: transform .9s cubic-bezier(.2, .9, .25, 1.08);
   box-shadow: 0 40px 80px -30px rgb(0 0 0 / .7), 0 0 120px -40px rgb(177 140 255 / .55);
+  cursor: pointer;
+  touch-action: pan-y;          /* vertical swipes still scroll the page */
+  -webkit-user-select: none; user-select: none;
+  -webkit-touch-callout: none;
 }
+.dev-card.is-flipped { --flip: 180deg; }
 .dev-card.is-tilting { transition: transform .08s linear; }
+.dev-card.is-settling { transition: transform .7s cubic-bezier(.2, 1.6, .4, 1); }
+.face {
+  border-radius: 26px; padding: 1.5px;
+  background: conic-gradient(from 210deg at 50% 50%, var(--mint), var(--blue), var(--violet), #ff9bd9, var(--mint));
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+}
+.face-back { position: absolute; inset: 0; transform: rotateY(180deg); }
 .dev-card-inner { position: relative; overflow: hidden; border-radius: 25px; background: linear-gradient(180deg, #1b0f2e, var(--ink) 60%); padding: 14px; }
+.dev-card img { -webkit-user-drag: none; pointer-events: none; }
 .dev-card-top { display: flex; align-items: center; justify-content: space-between; padding: 4px 6px 12px; }
 .dev-card-brand { font-weight: 800; font-size: 20px; letter-spacing: -.06em; color: var(--mint); }
 .dev-card-status { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
@@ -176,6 +188,53 @@ img { display: block; max-width: 100%; }
 .dev-card-glare { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at var(--mx) var(--my), rgb(255 255 255 / .22), transparent 45%); mix-blend-mode: overlay; opacity: .6; transition: opacity .4s; }
 .dev-card.is-tilting .dev-card-foil { opacity: .42; }
 .dev-card.is-tilting .dev-card-glare { opacity: 1; }
+
+/* Card back */
+.dev-card-back {
+  height: 100%; display: flex; flex-direction: column; padding: 14px 18px 18px;
+  background:
+    radial-gradient(circle, rgb(116 240 196 / .16) 1px, transparent 1.6px) 0 0 / 14px 14px,
+    radial-gradient(90% 60% at 100% 0%, rgb(177 140 255 / .3), transparent 70%),
+    linear-gradient(180deg, #1b0f2e, var(--ink) 70%);
+}
+.dev-card-back .dev-card-top { padding-inline: 0; }
+.back-hint { font-size: 13px; color: var(--dim); }
+.hint-mouse { display: none; }
+@media (hover: hover) and (pointer: fine) { .hint-touch { display: none; } .hint-mouse { display: inline; } }
+.back-title { margin-top: clamp(12px, 4%, 28px); font-weight: 800; font-size: clamp(36px, 11vw, 46px); line-height: .92; letter-spacing: -.05em; font-variation-settings: "opsz" 96; }
+.back-text { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.back-links { margin-top: auto; display: grid; gap: 8px; position: relative; z-index: 1; }
+.back-links a {
+  display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px;
+  border-radius: 14px; border: 1px solid var(--line-2); background: rgb(18 10 31 / .72);
+  font-weight: 600; font-size: 16px; cursor: pointer;
+  transition: border-color .2s, background .2s, transform .2s var(--ease-out);
+}
+.back-links a:hover, .back-links a:active { border-color: var(--mint); background: rgb(116 240 196 / .1); }
+.back-links a:active { transform: scale(.98); }
+.back-links .icon { color: var(--mint); }
+.back-links .go { margin-left: auto; width: 16px; height: 16px; color: var(--dim); }
+.dev-card-back .dev-card-foil { opacity: .12; }
+
+.flip-btn {
+  display: flex; align-items: center; gap: 8px; margin: 26px auto 0;
+  min-height: 44px; padding: 0 18px; border-radius: 999px;
+  border: 1px solid var(--line-2); background: rgb(24 15 41 / .7);
+  font-size: 15px; font-weight: 500; color: var(--muted);
+  transition: color .2s, border-color .2s, background .2s;
+}
+.flip-btn:hover { color: var(--text); border-color: var(--violet); }
+.flip-btn .icon { width: 17px; height: 17px; color: var(--mint); transition: transform .6s var(--ease-out); }
+.flip-btn[aria-pressed="true"] .icon { transform: rotate(180deg); }
+
+/* One-time nudge on touch screens so people notice the card responds. */
+.dev-card.nudge { animation: card-nudge 1.4s cubic-bezier(.4, 0, .2, 1) both; }
+@keyframes card-nudge {
+  0%   { transform: rotate(3deg) rotateY(0); }
+  30%  { transform: rotate(3deg) rotateY(-16deg) rotateX(4deg); }
+  60%  { transform: rotate(3deg) rotateY(12deg) rotateX(-3deg); }
+  100% { transform: rotate(3deg) rotateY(0); }
+}
 
 .hero-now { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: clamp(32px, 6vh, 64px); padding: 22px 0 28px; border-top: 1px solid var(--line); }
 .hero-now p { font-size: 15px; color: var(--muted); max-width: 64ch; }
@@ -464,7 +523,7 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .dev-card { transform: rotate(3deg) !important; }
+  .dev-card { transform: rotate(3deg) rotateY(var(--flip)) !important; }
 }
 
 @media print {
@@ -472,6 +531,7 @@ img { display: block; max-width: 100%; }
   .site-header, .card-stage, .feature-visual, .project-art, .toast, .copy-btn, .hero-field, .all-repos { display: none !important; }
   .wrap { width: 100%; }
   .hero-grid, .feature, .duo, .skills, .job { display: block; }
+  .flip-btn { display: none !important; }
   .hero-title { margin: 0; font-size: 48px; }
   .hero-title .line:nth-child(2) > span { color: #000; background: none; }
   .section { padding-top: 32px; }

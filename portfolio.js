@@ -61,40 +61,113 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   update();
 })();
 
-/* -------------------------------- Developer card: tilt and foil on pointer */
+/* ------------------------------------------- Developer card: tilt + flip
+   Mouse: hover tilts the card. Touch: dragging a finger tilts it and it
+   springs back on release. Tap/click or the button flips it to the back,
+   which holds contact shortcuts. */
 (() => {
   const card = document.getElementById('dev-card');
-  const stage = card?.parentElement;
+  const button = document.getElementById('flip-card');
+  const front = document.getElementById('card-front');
+  const back = document.getElementById('card-back');
+  if (!card || !button || !front || !back) return;
+  const stage = card.parentElement;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  if (!card || !stage) return;
-
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
   let frame = 0;
-  function move(event) {
-    if (reducedMotion.matches || !finePointer.matches) return;
+  let flipped = false;
+
+  function setTilt(clientX, clientY, strength = 1) {
     const rect = card.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;   // 0..1
-    const y = (event.clientY - rect.top) / rect.height;   // 0..1
+    const x = clamp((clientX - rect.left) / rect.width, 0, 1);
+    const y = clamp((clientY - rect.top) / rect.height, 0, 1);
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(() => {
+      card.classList.remove('is-settling');
       card.classList.add('is-tilting');
-      card.style.setProperty('--ry', `${(x - .5) * 18}deg`);
-      card.style.setProperty('--rx', `${(.5 - y) * 14}deg`);
+      card.style.setProperty('--ry', `${(x - .5) * 20 * strength}deg`);
+      card.style.setProperty('--rx', `${(.5 - y) * 16 * strength}deg`);
       card.style.setProperty('--mx', `${x * 100}%`);
       card.style.setProperty('--my', `${y * 100}%`);
       card.style.setProperty('--foil', `${30 + (x + y) * 25}%`);
     });
   }
-  function reset() {
+  function resetTilt(spring = false) {
     cancelAnimationFrame(frame);
     card.classList.remove('is-tilting');
-    ['--rx', '--ry'].forEach(p => card.style.setProperty(p, '0deg'));
+    card.classList.toggle('is-settling', spring && !reducedMotion.matches);
+    card.style.setProperty('--rx', '0deg');
+    card.style.setProperty('--ry', '0deg');
     card.style.setProperty('--mx', '50%');
     card.style.setProperty('--my', '30%');
     card.style.setProperty('--foil', '50%');
   }
-  stage.addEventListener('pointermove', move);
-  stage.addEventListener('pointerleave', reset);
-  reducedMotion.addEventListener('change', reset);
+  card.addEventListener('transitionend', event => { if (event.target === card) card.classList.remove('is-settling'); });
+
+  function flip(next = !flipped) {
+    flipped = next;
+    resetTilt();
+    card.classList.remove('nudge');
+    card.classList.toggle('is-flipped', flipped);
+    button.setAttribute('aria-pressed', String(flipped));
+    button.querySelector('span').textContent = flipped ? 'Ver frente' : 'Virar cartão';
+    back.inert = !flipped;
+    front.setAttribute('aria-hidden', String(flipped));
+    if (navigator.vibrate && !finePointer.matches) navigator.vibrate(8);
+  }
+  button.hidden = false;
+  button.addEventListener('click', () => flip());
+
+  // Mouse: hover tilt.
+  stage.addEventListener('pointermove', event => {
+    if (event.pointerType !== 'mouse' || reducedMotion.matches) return;
+    setTilt(event.clientX, event.clientY);
+  });
+  stage.addEventListener('pointerleave', event => { if (event.pointerType === 'mouse') resetTilt(); });
+
+  // Touch and pen: drag to tilt, release to spring back. Taps flip.
+  let touch = null;
+  card.addEventListener('pointerdown', event => {
+    if (event.pointerType === 'mouse' || event.target.closest('a')) return;
+    touch = { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false };
+    if (!reducedMotion.matches) setTilt(event.clientX, event.clientY, .6);
+  });
+  card.addEventListener('pointermove', event => {
+    if (!touch || event.pointerId !== touch.id) return;
+    if (Math.hypot(event.clientX - touch.x, event.clientY - touch.y) > 10) touch.moved = true;
+    if (!reducedMotion.matches) setTilt(event.clientX, event.clientY, 1.15);
+  });
+  const endTouch = event => {
+    if (!touch || event.pointerId !== touch.id) return;
+    resetTilt(true);
+    // Keep the "moved" flag until the click that follows this pointerup.
+    setTimeout(() => { touch = null; }, 0);
+  };
+  card.addEventListener('pointerup', endTouch);
+  card.addEventListener('pointercancel', event => { if (touch) touch.moved = true; endTouch(event); });
+
+  card.addEventListener('click', event => {
+    if (event.target.closest('a')) return;
+    if (touch && touch.moved) return;
+    flip();
+  });
+
+  // A single nudge on touch screens the first time the card is in view.
+  if (!finePointer.matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      if (reducedMotion.matches) return;
+      setTimeout(() => {
+        if (flipped || card.classList.contains('is-tilting')) return;
+        card.classList.add('nudge');
+      }, 500);
+    }, { threshold: .6 });
+    io.observe(card);
+    card.addEventListener('animationend', event => { if (event.target === card) card.classList.remove('nudge'); });
+  }
+
+  reducedMotion.addEventListener('change', () => resetTilt());
 })();
 
 /* ------------------- Health Check preview: a small, illustrative live demo */
