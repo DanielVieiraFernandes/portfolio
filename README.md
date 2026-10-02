@@ -1,29 +1,30 @@
 # Daniel Vieira Fernandes — Portfólio
 
-Landing page pessoal em HTML, CSS e JavaScript. Apresentação focada em C# e .NET, três projetos, habilidades e contato. O currículo fica disponível na abertura, no cabeçalho e na seção de contato.
+Landing page pessoal em HTML, CSS e JavaScript, sem build. Apresentação focada em .NET, três projetos, experiência, habilidades e contato. O currículo fica disponível no cabeçalho, na abertura e na seção de contato.
 
 ## Estrutura
 
-- `index.html`: conteúdo semântico, links, projetos e detalhes técnicos expansíveis.
-- `styles.css`: identidade escura com acentos em lavanda, layout responsivo e transições.
-- `portfolio.js`: menu móvel, indicação da seção atual, entrada de conteúdo durante a rolagem e cópia do e-mail.
-- `assets/daniel-avatar.png`: retrato ilustrado criado anteriormente com ImageGen. Prompt em `assets/avatar-prompt.md`.
-- `Daniel_Vieira_Desenvolvedor.pdf`: currículo para visualizar ou baixar.
-- `Daniel_Vieira_Desenvolvedor.tex`: fonte LaTeX do currículo.
+- `index.html`: conteúdo semântico (abertura, projetos, experiência, habilidades, contato).
+- `styles.css`: identidade visual, layout responsivo e animações.
+- `portfolio.js`: menu móvel, seção ativa, cabeçalho ao rolar, inclinação do cartão, prévia animada do Health Check e cópia do e-mail.
+- `assets/daniel-avatar.webp`: retrato otimizado para a web (gerado a partir de `daniel-avatar.png`; prompt em `assets/avatar-prompt.md`).
+- `Daniel_Vieira_Desenvolvedor.pdf` / `.tex`: currículo e sua fonte LaTeX.
 
-Abra `index.html` no navegador ou utilize um servidor HTTP local. Não há dependências de build nem bibliotecas de animação. As fontes do Google Fonts têm alternativas locais.
+## Direção visual
 
-## Decisões de UX
+- Paleta tirada do próprio retrato: fundo ameixa profundo, luz de contorno violeta e menta, e o azul do headset.
+- Uma única família tipográfica, Bricolage Grotesque, usando o eixo de tamanho óptico para títulos enormes e texto corrido.
+- Retícula de pontos (halftone) como referência ao traço de quadrinho do retrato.
+- Um único elemento ousado: o cartão holográfico na abertura, que inclina e reflete conforme o ponteiro.
+- Uma única sequência de entrada ao carregar a página; o resto fica parado. A prévia do Health Check se atualiza apenas quando está visível.
+- Cada projeto tem sua própria ilustração (painel de monitoramento, gráfico financeiro, camadas da Clean Architecture). Os dados são ilustrativos.
 
-- Apresentação e ações principais sempre visíveis, sem tela de carregamento.
-- Um projeto em destaque e dois projetos complementares, sem filtros para uma lista pequena.
-- Informações técnicas adicionais em elementos `details` nativos, acessíveis por teclado e sem JavaScript.
-- Habilidades de IA apresentadas como competências, junto das demais habilidades.
-- A prévia do Health Check Monitor é conceitual, com dados ilustrativos.
-- Entradas de 650 ms com deslocamento de 22 px, uma única vez por bloco. Sem animações contínuas, parallax ou alteração da rolagem do navegador.
-- Conteúdo visível por padrão. A animação é um aprimoramento ativado apenas quando há suporte a IntersectionObserver. Links diretos e foco por teclado revelam os blocos imediatamente.
-- `prefers-reduced-motion` desativa os movimentos, inclusive quando a preferência muda durante a visita. A impressão também exibe todo o conteúdo.
-- Sem JavaScript, navegação, projetos, currículo, contatos e detalhes técnicos continuam disponíveis.
+## Acessibilidade e robustez
+
+- `prefers-reduced-motion` desativa entrada, inclinação e a prévia animada.
+- Sem JavaScript, todo o conteúdo, links e currículo continuam disponíveis.
+- Foco visível em todos os elementos interativos; menu móvel fecha com Escape.
+- Impressão exibe o conteúdo em preto e branco, sem ilustrações.
 
 ## Validação
 
