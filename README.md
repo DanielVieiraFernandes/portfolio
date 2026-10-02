@@ -16,12 +16,13 @@ Landing page pessoal em HTML, CSS e JavaScript, sem build. Apresentação focada
 - Uma única família tipográfica, Bricolage Grotesque, usando o eixo de tamanho óptico para títulos enormes e texto corrido.
 - Retícula de pontos (halftone) como referência ao traço de quadrinho do retrato.
 - Um único elemento ousado: o cartão holográfico na abertura. No desktop ele inclina com o mouse; no celular, com o arrastar do dedo, voltando com efeito de mola ao soltar. Um toque, clique ou o botão "Virar cartão" mostra o verso com atalhos de contato. Em telas de toque, o cartão balança uma vez ao aparecer para indicar que é interativo.
-- Uma única sequência de entrada ao carregar a página; o resto fica parado. A prévia do Health Check se atualiza apenas quando está visível.
+- O cartão flutua continuamente, cercado por uma aura: halo colorido girando, núcleo pulsante, ondas de energia saindo da borda, faíscas subindo, borda com gradiente em rotação e um brilho no chão que encolhe quando ele sobe. Tudo pausa quando a abertura sai da tela.
+- Fora o cartão, uma única sequência de entrada ao carregar a página; o resto fica parado. A prévia do Health Check se atualiza apenas quando está visível.
 - Cada projeto tem sua própria ilustração (painel de monitoramento, gráfico financeiro, camadas da Clean Architecture). Os dados são ilustrativos.
 
 ## Acessibilidade e robustez
 
-- `prefers-reduced-motion` desativa entrada, inclinação e a prévia animada; o cartão ainda vira, sem animação.
+- `prefers-reduced-motion` desativa entrada, flutuação, aura animada, inclinação e a prévia animada; o cartão ainda vira, sem animação, e o brilho fica estático.
 - O verso do cartão fica `inert` enquanto não está visível, e o botão de virar usa `aria-pressed`. Arrastar na vertical sobre o cartão continua rolando a página.
 - Sem JavaScript, todo o conteúdo, links e currículo continuam disponíveis.
 - Foco visível em todos os elementos interativos; menu móvel fecha com Escape.

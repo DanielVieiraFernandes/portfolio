@@ -71,7 +71,7 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const front = document.getElementById('card-front');
   const back = document.getElementById('card-back');
   if (!card || !button || !front || !back) return;
-  const stage = card.parentElement;
+  const stage = card.closest('.card-stage');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
   let frame = 0;
@@ -168,6 +168,13 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   }
 
   reducedMotion.addEventListener('change', () => resetTilt());
+
+  // Pause the floating aura while the hero is off screen.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      stage.classList.toggle('is-idle', !entries[0].isIntersecting);
+    }).observe(stage);
+  }
 })();
 
 /* ------------------- Health Check preview: a small, illustrative live demo */
