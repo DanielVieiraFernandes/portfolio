@@ -140,13 +140,19 @@ img { display: block; max-width: 100%; }
 
 /* The developer card: the one bold moment on the page. */
 .card-stage { position: relative; z-index: 2; justify-self: end; width: 100%; max-width: 380px; }
+/* The card hovers gently: a slow rise and fall with a hint of rotation. */
+.card-float { perspective: 1100px; animation: float 6s ease-in-out infinite; }
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-16px) rotate(-.6deg); }
+}
 .dev-card {
   --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 30%; --foil: 50%; --flip: 0deg;
   position: relative; border-radius: 26px;
   transform: rotate(3deg) rotateX(var(--rx)) rotateY(calc(var(--ry) + var(--flip)));
   transform-style: preserve-3d;
   transition: transform .9s cubic-bezier(.2, .9, .25, 1.08);
-  box-shadow: 0 50px 90px -34px rgb(0 0 0 / .75);
+  box-shadow: 0 40px 80px -30px rgb(0 0 0 / .7), 0 0 120px -40px rgb(177 140 255 / .55);
   cursor: pointer;
   touch-action: pan-y;          /* vertical swipes still scroll the page */
   -webkit-user-select: none; user-select: none;
@@ -156,10 +162,8 @@ img { display: block; max-width: 100%; }
 .dev-card.is-tilting { transition: transform .08s linear; }
 .dev-card.is-settling { transition: transform .7s cubic-bezier(.2, 1.6, .4, 1); }
 .face {
-  border-radius: 26px; padding: 2px;
-  background: conic-gradient(from var(--spin) at 50% 50%, var(--mint), var(--blue), var(--violet), #ff9bd9, var(--mint));
-  animation: rim-spin 5s linear infinite;
-  box-shadow: 0 0 18px 0 rgb(177 140 255 / .75), 0 0 46px -6px rgb(116 240 196 / .7), 0 0 90px -20px rgb(90 162 255 / .8);
+  border-radius: 26px; padding: 1.5px;
+  background: conic-gradient(from 210deg at 50% 50%, var(--mint), var(--blue), var(--violet), #ff9bd9, var(--mint));
   -webkit-backface-visibility: hidden; backface-visibility: hidden;
 }
 .face-back { position: absolute; inset: 0; transform: rotateY(180deg); }
@@ -191,94 +195,6 @@ img { display: block; max-width: 100%; }
 .dev-card.is-tilting .dev-card-foil { opacity: .42; }
 .dev-card.is-tilting .dev-card-glare { opacity: 1; }
 
-/* ---- Floating card + aura ------------------------------------------------ */
-@property --spin { syntax: "<angle>"; inherits: false; initial-value: 210deg; }
-@keyframes rim-spin { to { --spin: 570deg; } }
-
-.card-float { position: relative; isolation: isolate; perspective: 1100px; animation: float 6s ease-in-out infinite; }
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50%      { transform: translateY(-20px) rotate(-.8deg); }
-}
-
-.aura { position: absolute; inset: -28% -34%; z-index: -1; pointer-events: none; }
-.aura > span { position: absolute; display: block; }
-/* Big coloured halo that slowly turns and breathes. */
-.aura-glow {
-  inset: 14% 16%; border-radius: 42%;
-  background: conic-gradient(from 0deg, var(--mint), var(--blue), var(--violet), #ff9bd9, var(--violet), var(--mint));
-  filter: blur(46px); opacity: 1;
-  animation: aura-turn 14s linear infinite, aura-breathe 6s ease-in-out infinite;
-  will-change: rotate, scale;
-}
-/* Hot white-violet core right behind the card. */
-.aura-core {
-  inset: 22% 26%; border-radius: 30%;
-  background: radial-gradient(closest-side, rgb(240 232 255 / .85), rgb(177 140 255 / .55) 45%, transparent);
-  filter: blur(30px);
-  animation: aura-pulse 3s ease-in-out infinite;
-}
-@keyframes aura-turn { to { rotate: 360deg; } }
-@keyframes aura-breathe { 0%, 100% { scale: 1; opacity: .8; } 50% { scale: 1.16; opacity: 1; } }
-@keyframes aura-pulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-
-/* A soft vertical beam rising from the floor glow, like the card is levitating. */
-.aura-beam {
-  left: 30%; right: 30%; top: 34%; bottom: 16%;
-  background: linear-gradient(0deg, rgb(116 240 196 / .45), rgb(177 140 255 / .18) 45%, transparent 80%);
-  filter: blur(24px);
-  animation: aura-pulse 6s ease-in-out infinite;
-}
-
-/* Energy waves leaving the card outline. */
-.aura-ring {
-  inset: 21.9% 25.4%; border-radius: 28px;
-  border: 2px solid rgb(116 240 196 / .8);
-  box-shadow: 0 0 18px rgb(116 240 196 / .6), inset 0 0 18px rgb(116 240 196 / .35);
-  opacity: 0;
-  animation: ring-out 3.6s cubic-bezier(.2, .6, .3, 1) infinite;
-}
-.aura-ring.r3 { border-color: rgb(90 162 255 / .85); box-shadow: 0 0 18px rgb(90 162 255 / .6), inset 0 0 18px rgb(90 162 255 / .35); animation-delay: 2.4s; }
-.aura-ring.r2 { border-color: rgb(177 140 255 / .85); box-shadow: 0 0 18px rgb(177 140 255 / .6), inset 0 0 18px rgb(177 140 255 / .35); animation-delay: 1.2s; }
-@keyframes ring-out {
-  0%   { transform: scale(1) rotate(3deg); opacity: .9; }
-  100% { transform: scale(1.3) rotate(3deg); opacity: 0; }
-}
-
-/* Sparks drifting upward around the card. */
-.aura-sparks { inset: 14% 18%; }
-.aura-sparks i {
-  position: absolute; left: var(--x); bottom: 6%;
-  width: var(--s); height: var(--s); border-radius: 50%;
-  background: #e6fff5; box-shadow: 0 0 6px 1px #fff, 0 0 16px 4px rgb(116 240 196 / .95);
-  opacity: 0;
-  animation: spark var(--d) linear var(--dl) infinite;
-}
-.aura-sparks i.v { background: #f0e8ff; box-shadow: 0 0 6px 1px #fff, 0 0 16px 4px rgb(177 140 255 / .95); }
-.aura-sparks i.b { background: #e3eeff; box-shadow: 0 0 6px 1px #fff, 0 0 16px 4px rgb(90 162 255 / .95); }
-.aura-sparks i.p { background: #ffe6f6; box-shadow: 0 0 6px 1px #fff, 0 0 16px 4px rgb(255 155 217 / .9); }
-@keyframes spark {
-  0%   { transform: translate(0, 0) scale(.3); opacity: 0; }
-  12%  { opacity: 1; }
-  70%  { opacity: .8; }
-  100% { transform: translate(var(--dx), -560px) scale(1.15); opacity: 0; }
-}
-
-/* Glowing pool on the "floor" that shrinks as the card rises. */
-.card-shadow {
-  display: block; width: 86%; height: 40px; margin: 10px auto 0; border-radius: 50%;
-  background: radial-gradient(closest-side, rgb(200 255 235 / .8), rgb(116 240 196 / .55) 30%, rgb(177 140 255 / .35) 60%, transparent);
-  filter: blur(10px);
-  animation: floor 6s ease-in-out infinite;
-}
-@keyframes floor {
-  0%, 100% { transform: scale(1); opacity: .95; }
-  50%      { transform: scale(.74); opacity: .5; }
-}
-
-/* Save battery when the hero is off screen. */
-.card-stage.is-idle *, .card-stage.is-idle *::before, .card-stage.is-idle *::after { animation-play-state: paused !important; }
-
 /* Card back */
 .dev-card-back {
   height: 100%; display: flex; flex-direction: column; padding: 14px 18px 18px;
@@ -307,7 +223,7 @@ img { display: block; max-width: 100%; }
 .dev-card-back .dev-card-foil { opacity: .12; }
 
 .flip-btn {
-  display: flex; align-items: center; gap: 8px; margin: 8px auto 0;
+  display: flex; align-items: center; gap: 8px; margin: 26px auto 0;
   min-height: 44px; padding: 0 18px; border-radius: 999px;
   border: 1px solid var(--line-2); background: rgb(24 15 41 / .7);
   font-size: 15px; font-weight: 500; color: var(--muted);
@@ -571,7 +487,7 @@ img { display: block; max-width: 100%; }
   .hero-grid { grid-template-columns: 1fr; min-height: 0; gap: 48px; }
   .hero-title { margin-right: 0; font-size: clamp(44px, 12.6vw, 104px); }
   .hero-hello { font-size: 14px; }
-  .card-stage { justify-self: center; max-width: 300px; margin-top: 24px; }
+  .card-stage { justify-self: center; max-width: 340px; }
   .hero-now { flex-direction: column; align-items: flex-start; gap: 16px; }
   .hero-social { margin-left: -14px; }
 
@@ -614,7 +530,6 @@ img { display: block; max-width: 100%; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .dev-card { transform: rotate(3deg) rotateY(var(--flip)) !important; }
-  .aura-sparks, .aura-ring { display: none; }
 }
 
 @media print {

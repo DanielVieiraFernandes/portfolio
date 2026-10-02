@@ -168,13 +168,6 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   }
 
   reducedMotion.addEventListener('change', () => resetTilt());
-
-  // Pause the floating aura while the hero is off screen.
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => {
-      stage.classList.toggle('is-idle', !entries[0].isIntersecting);
-    }).observe(stage);
-  }
 })();
 
 /* ------------------- Health Check preview: a small, illustrative live demo */
