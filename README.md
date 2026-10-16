@@ -1,10 +1,26 @@
 # Daniel Vieira Fernandes — Portfólio
 
-Landing page pessoal em HTML, CSS e JavaScript, sem build. Apresentação focada em .NET, três projetos, experiência, habilidades e contato. O currículo fica disponível no cabeçalho, na abertura e na seção de contato.
+Portfólio pessoal em HTML, CSS e JavaScript, sem build.
 
-## Estrutura
+A página principal (`index.html`) é o **DanielOS**, uma interface de sistema operacional: área de trabalho com ícones, dock, janelas que arrastam, minimizam e maximizam, e um "Visual Studio Code" em que abrir a pasta `portfolio` revela a apresentação (foto, projetos, experiência, habilidades e contato). Também há um terminal com comandos (`ajuda`, `projetos`, `contato`, `neofetch`…), um visualizador do currículo em PDF e um navegador que mostra a versão clássica.
 
-- `index.html`: conteúdo semântico (abertura, projetos, experiência, habilidades, contato).
+A landing page anterior continua disponível em `classic.html`.
+
+## Rodar localmente
+
+Na pasta do projeto, suba qualquer servidor estático, por exemplo `python -m http.server 5500`, e abra http://localhost:5500.
+
+## Estrutura do DanielOS
+
+- `index.html`: casca do sistema (tela de boot, barra superior, área de trabalho e dock).
+- `os/content.js`: todo o conteúdo (projetos, experiência, habilidades, contato e os arquivos que aparecem no editor). Edite aqui para atualizar textos.
+- `os/os.js`: gerenciador de janelas e aplicativos (editor, projetos, terminal, currículo, contato, navegador e lixeira).
+- `os/os.css`: visual do sistema, com a mesma paleta do retrato. No celular as janelas abrem em tela cheia.
+- `index.html#terminal`, `#pdf`, `#contact`, `#files`: abrem direto um aplicativo.
+
+## Estrutura da versão clássica
+
+- `classic.html`: conteúdo semântico (abertura, projetos, experiência, habilidades, contato).
 - `styles.css`: identidade visual, layout responsivo e animações.
 - `portfolio.js`: menu móvel, seção ativa, cabeçalho ao rolar, inclinação do cartão, prévia animada do Health Check e cópia do e-mail.
 - `assets/daniel-avatar.webp`: retrato otimizado para a web (gerado a partir de `daniel-avatar.png`; prompt em `assets/avatar-prompt.md`).
