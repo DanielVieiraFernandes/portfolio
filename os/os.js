@@ -67,13 +67,13 @@ function launch(id, options = {}) {
   el.setAttribute('aria-label', app.title);
   el.innerHTML = `
     <header class="win-bar">
-      <div class="win-lights">
-        <button type="button" class="light close" data-act="close" aria-label="Fechar ${esc(app.short)}"></button>
-        <button type="button" class="light min" data-act="min" aria-label="Minimizar ${esc(app.short)}"></button>
-        <button type="button" class="light max" data-act="max" aria-label="Maximizar ${esc(app.short)}"></button>
-      </div>
+      <span class="win-icon" aria-hidden="true">${ICONS[app.icon]}</span>
       <span class="win-title">${esc(app.title)}</span>
-      <span class="win-bar-end"></span>
+      <div class="win-ctrls">
+        <button type="button" class="win-ctrl min" data-act="min" title="Minimizar" aria-label="Minimizar ${esc(app.short)}"><svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg></button>
+        <button type="button" class="win-ctrl max" data-act="max" title="Maximizar" aria-label="Maximizar ${esc(app.short)}"><svg viewBox="0 0 12 12"><rect x="2" y="2" width="8" height="8" rx="1"/></svg></button>
+        <button type="button" class="win-ctrl close" data-act="close" title="Fechar" aria-label="Fechar ${esc(app.short)}"><svg viewBox="0 0 12 12"><path d="m2.5 2.5 7 7m0-7-7 7"/></svg></button>
+      </div>
     </header>
     <div class="win-body"></div>
     <span class="win-resize" aria-hidden="true"></span>`;
@@ -786,6 +786,6 @@ async function boot(force = false) {
   setInterval(tickClock, 15000);
   await boot();
   const fromHash = location.hash.slice(1);
+  // Start on a clean desktop; a hash such as #terminal opens that app directly.
   if (APPS[fromHash]) launch(fromHash);
-  else if (!compact.matches) launch('code');
 })();
