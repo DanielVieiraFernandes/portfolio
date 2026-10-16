@@ -77,6 +77,7 @@ img { display: block; max-width: 100%; }
   overflow: hidden;
   background: #120a1f url("../assets/wallpaper.svg") 50% 100% / cover no-repeat;
 }
+.sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .desktop-hello { position: absolute; left: 50%; bottom: 32%; transform: translateX(-50%); width: min(440px, calc(100% - 48px)); text-align: center; color: var(--muted); pointer-events: none; }
 .desktop-hello p:first-child { font: 700 clamp(28px, 4vw, 48px)/1.05 var(--font); color: var(--text); letter-spacing: -.02em; margin-bottom: 10px; }
 .desktop-hello strong { color: var(--mint); font-weight: 600; }
@@ -376,7 +377,7 @@ img { display: block; max-width: 100%; }
   :root { --dock-h: 70px; }
   .topbar-status, .topbar-app { display: none; }
   .desktop-hello { bottom: calc(var(--dock-h) + 190px); }
-  .desktop-icons { position: static; display: grid; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(4, 1fr); justify-items: center; padding: 20px 12px; gap: 10px 0; }
+  .desktop-icons { position: relative; inset: auto; z-index: 1; display: grid; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(4, 1fr); justify-items: center; padding: 20px 12px; gap: 10px 0; }
   .desk-icon { width: 80px; }
   .dock { bottom: max(8px, env(safe-area-inset-bottom)); gap: 4px; padding: 6px 8px; max-width: calc(100% - 16px); }
   .dock-item { width: 44px; height: 44px; }
