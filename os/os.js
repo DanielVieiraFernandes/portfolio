@@ -78,14 +78,7 @@ function launch(id, options = {}) {
     <div class="win-body"></div>
     <span class="win-resize" aria-hidden="true"></span>`;
 
-  const area = windowsEl.getBoundingClientRect();
-  const w = Math.min(app.w, area.width - 32);
-  const h = Math.min(app.h, area.height - 24);
-  const offset = (cascade++ % 6) * 28;
-  el.style.width = w + 'px';
-  el.style.height = h + 'px';
-  el.style.left = Math.max(8, (area.width - w) / 2 - 60 + offset) + 'px';
-  el.style.top = Math.max(8, (area.height - h) / 2 - 30 + offset * 0.6) + 'px';
+  placeWindow(el, app, (cascade++ % 6) * 28);
 
   windowsEl.append(el);
   const record = { el, app };
@@ -98,6 +91,30 @@ function launch(id, options = {}) {
   syncDock();
   return record;
 }
+
+function placeWindow(el, app, offset = 0) {
+  const area = windowsEl.getBoundingClientRect();
+  const w = Math.min(app.w, area.width - 32);
+  const h = Math.min(app.h, area.height - 24);
+  el.style.width = w + 'px';
+  el.style.height = h + 'px';
+  el.style.left = Math.max(8, (area.width - w) / 2 - 60 + offset) + 'px';
+  el.style.top = Math.max(8, (area.height - h) / 2 - 30 + offset * 0.6) + 'px';
+}
+
+// Leaving the phone layout: give windows a proper desktop size again.
+compact.addEventListener('change', e => { if (!e.matches) open.forEach(r => placeWindow(r.el, r.app)); });
+// Keep windows reachable when the browser shrinks.
+addEventListener('resize', () => {
+  if (compact.matches) return;
+  const area = windowsEl.getBoundingClientRect();
+  open.forEach(({ el }) => {
+    if (el.offsetWidth > area.width - 16) el.style.width = Math.max(340, area.width - 16) + 'px';
+    if (el.offsetHeight > area.height - 8) el.style.height = Math.max(220, area.height - 8) + 'px';
+    el.style.left = Math.min(el.offsetLeft, Math.max(0, area.width - el.offsetWidth)) + 'px';
+    el.style.top = Math.min(el.offsetTop, Math.max(0, area.height - el.offsetHeight)) + 'px';
+  });
+});
 
 function wireWindow(id, record) {
   const { el } = record;
