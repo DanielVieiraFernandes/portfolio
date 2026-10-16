@@ -15,6 +15,7 @@ Na pasta do projeto, suba qualquer servidor estático, por exemplo `python -m ht
 - `index.html`: casca do sistema (tela de boot, barra superior, área de trabalho e dock).
 - `os/content.js`: todo o conteúdo (projetos, experiência, habilidades, contato e os arquivos que aparecem no editor). Edite aqui para atualizar textos.
 - `os/os.js`: gerenciador de janelas e aplicativos (editor, projetos, terminal, currículo, contato, navegador e lixeira).
+- `assets/wallpaper.svg`: papel de parede, um mapa topográfico em que o ponto mais alto é o retrato do Daniel (as curvas de nível saem do brilho da foto). É gerado por `tools/wallpaper.py` (`python tools/wallpaper.py assets/daniel-avatar.png assets/wallpaper.svg`, precisa de Pillow e NumPy).
 - `os/os.css`: visual do sistema, com a mesma paleta do retrato. No celular as janelas abrem em tela cheia.
 - `index.html#terminal`, `#pdf`, `#contact`, `#files`: abrem direto um aplicativo.
 
