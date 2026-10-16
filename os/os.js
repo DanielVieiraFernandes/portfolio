@@ -67,6 +67,7 @@ function launch(id, options = {}) {
   el.setAttribute('aria-label', app.title);
   el.innerHTML = `
     <header class="win-bar">
+      <button type="button" class="win-back" data-act="close" aria-label="Voltar para o início"><svg viewBox="0 0 12 12"><path d="M7.5 2.5 4 6l3.5 3.5"/></svg>Início</button>
       <span class="win-icon" aria-hidden="true">${ICONS[app.icon]}</span>
       <span class="win-title">${esc(app.title)}</span>
       <div class="win-ctrls">
@@ -89,8 +90,18 @@ function launch(id, options = {}) {
   if (!reducedMotion.matches) el.classList.add('is-opening');
   el.addEventListener('animationend', () => el.classList.remove('is-opening'), { once: true });
   syncDock();
+  if (compact.matches && !options.silent) history.pushState({ danielos: id }, '');
   return record;
 }
+
+/* On phones each app is a full screen page: the system back button (or
+   swipe back) closes it instead of leaving the site. */
+let ignorePop = false;
+addEventListener('popstate', () => {
+  if (ignorePop) { ignorePop = false; return; }
+  const top = topmostVisible();
+  if (top) closeWindow(top[0], true);
+});
 
 function placeWindow(el, app, offset = 0) {
   const area = windowsEl.getBoundingClientRect();
@@ -168,7 +179,8 @@ function focusWindow(id) {
   record.el.style.zIndex = ++zTop;
   $('#topbar-app').textContent = record.app.title;
   if (!record.el.contains(document.activeElement)) {
-    const target = record.el.querySelector('[data-autofocus]') || $('.win-body', record.el);
+    let target = record.el.querySelector('[data-autofocus]') || $('.win-body', record.el);
+    if (coarse.matches && target.matches('input')) target = $('.win-body', record.el);
     target.setAttribute('tabindex', target.getAttribute('tabindex') ?? '-1');
     target.focus({ preventScroll: true });
   }
@@ -187,9 +199,10 @@ function afterHide() {
   else { $('#topbar-app').textContent = 'Área de trabalho'; syncDock(); }
 }
 
-function closeWindow(id) {
+function closeWindow(id, fromHistory = false) {
   const record = open.get(id);
   if (!record) return;
+  if (!fromHistory && history.state?.danielos === id) { ignorePop = true; history.back(); }
   record.onClose?.();
   open.delete(id);
   const finish = () => { record.el.remove(); afterHide(); };
@@ -416,6 +429,7 @@ function renderCode(body, record, options) {
       <div class="code-crumbs"></div>
       <div class="code-view"></div>
     </div>
+    <div class="code-scrim" aria-hidden="true"></div>
     <footer class="code-status">
       <span class="st-branch"><svg viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 7v10M18 11c0 4-6 3-11 6"/></svg>main</span>
       <span class="st-msg"></span>
@@ -472,7 +486,7 @@ function renderCode(body, record, options) {
     statusMsg.textContent = 'Abrindo ~/projetos/daniel-vieira/portfolio…';
     view.innerHTML = '<div class="code-loading"><span></span></div>';
     await wait(650);
-    record.el.querySelector('.win-title').textContent = 'portfolio · Visual Studio Code';
+    record.el.querySelector('.win-title').textContent = compact.matches ? 'portfolio' : 'portfolio · Visual Studio Code';
     renderTree();
     statusMsg.textContent = '';
     openFile('README.md');
@@ -500,6 +514,7 @@ function renderCode(body, record, options) {
     if (!state.tabs.includes(path)) state.tabs.push(path);
     state.active = path;
     if (!(path in state.mode)) state.mode[path] = 'preview';
+    body.classList.remove('side-open');
     draw();
   }
 
@@ -527,6 +542,7 @@ function renderCode(body, record, options) {
     const file = FILES[state.active];
     const mode = state.mode[state.active];
     crumbs.innerHTML = `
+      <button type="button" class="side-toggle" data-side-toggle aria-label="Mostrar arquivos do projeto"><svg viewBox="0 0 16 16"><path d="M2 4h12M2 8h12M2 12h12"/></svg>Arquivos</button>
       <span class="crumb-path">portfolio <i>›</i> ${state.active.split('/').map(esc).join(' <i>›</i> ')}</span>
       <span class="crumb-toggle" role="group" aria-label="Modo de exibição">
         <button type="button" data-mode="preview" aria-pressed="${mode === 'preview'}">Visualizar</button>
@@ -545,6 +561,8 @@ function renderCode(body, record, options) {
   body.addEventListener('click', e => {
     const t = e.target;
     if (t.closest('[data-open-project]')) return openProject();
+    if (t.closest('[data-side-toggle]')) return body.classList.toggle('side-open');
+    if (t.closest('.code-scrim')) return body.classList.remove('side-open');
     const close = t.closest('[data-close]');
     if (close) return closeTab(close.dataset.close);
     const modeBtn = t.closest('[data-mode]');
@@ -600,14 +618,16 @@ function renderFiles(body) {
 /* --------------------------------------------------------------- Terminal */
 function renderTerminal(body, record) {
   body.classList.add('term');
-  body.innerHTML = `<div class="term-out" aria-live="polite"></div>
+  body.innerHTML = `<div class="term-scroll"><div class="term-out" aria-live="polite"></div>
     <form class="term-line"><label for="term-input"><span class="term-user">daniel@danielos</span>:<span class="term-dir">~</span>$</label>
-    <input id="term-input" autocomplete="off" autocapitalize="off" spellcheck="false" data-autofocus aria-label="Comando do terminal"></form>`;
+    <input id="term-input" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" data-autofocus aria-label="Comando do terminal"></form></div>
+    <div class="term-chips" aria-label="Comandos rápidos">${['sobre', 'projetos', 'experiencia', 'habilidades', 'contato', 'neofetch', 'ajuda'].map(c => `<button type="button" data-cmd="${c}">${c}</button>`).join('')}</div>`;
+  const scroller = $('.term-scroll', body);
   const out = $('.term-out', body);
   const input = $('input', body);
   const history = [];
   let hIndex = 0;
-  const print = (html, cls = '') => { out.insertAdjacentHTML('beforeend', `<div class="t-row ${cls}">${html}</div>`); body.scrollTop = body.scrollHeight; };
+  const print = (html, cls = '') => { out.insertAdjacentHTML('beforeend', `<div class="t-row ${cls}">${html}</div>`); scroller.scrollTop = scroller.scrollHeight; };
   const fileNames = [...Object.keys(FILES).map(baseName), 'curriculo.pdf'];
   const pathOf = name => Object.keys(FILES).find(p => baseName(p).toLowerCase() === name.toLowerCase());
 
@@ -661,10 +681,7 @@ function renderTerminal(body, record) {
 
   print('DanielOS Terminal. Digite <span class="t-k">ajuda</span> para ver os comandos.', 't-dim');
 
-  $('form', body).addEventListener('submit', e => {
-    e.preventDefault();
-    const raw = input.value.trim();
-    input.value = '';
+  function run(raw) {
     print(`<span class="term-user">daniel@danielos</span>:<span class="term-dir">~</span>$ ${esc(raw)}`, 't-cmd');
     if (!raw) return;
     history.push(raw);
@@ -673,6 +690,16 @@ function renderTerminal(body, record) {
     const fn = COMMANDS[cmd.toLowerCase()];
     if (fn) fn(rest.join(' '));
     else print(`${esc(cmd)}: comando não encontrado. Tente <span class="t-k">ajuda</span>.`, 't-err');
+  }
+  $('form', body).addEventListener('submit', e => {
+    e.preventDefault();
+    const raw = input.value.trim();
+    input.value = '';
+    run(raw);
+  });
+  $('.term-chips', body).addEventListener('click', e => {
+    const chip = e.target.closest('[data-cmd]');
+    if (chip) run(chip.dataset.cmd);
   });
   input.addEventListener('keydown', e => {
     if (e.key === 'ArrowUp' && hIndex > 0) { input.value = history[--hIndex]; e.preventDefault(); }
@@ -686,12 +713,33 @@ function renderTerminal(body, record) {
       if (hit) input.value = [...parts, hit].join(' ');
     }
   });
-  body.addEventListener('click', () => { if (!getSelection().toString()) input.focus(); });
+  scroller.addEventListener('click', e => { if (!e.target.closest('a') && !getSelection().toString()) input.focus(); });
 }
 
 /* -------------------------------------------------------- Small apps */
 function renderPdf(body) {
   body.classList.add('pdf');
+  // Phones rarely render PDFs inline, so they get a summary card instead.
+  if (compact.matches || coarse.matches) {
+    body.classList.add('pdf-card');
+    body.innerHTML = `
+      <div class="resume-card">
+        <span class="app-icon" aria-hidden="true">${ICONS.pdf}</span>
+        <p class="resume-file">Daniel_Vieira_Desenvolvedor.pdf</p>
+        <div class="pv-actions">
+          <a class="pv-btn solid" href="${LINKS.resume}" target="_blank" rel="noopener noreferrer">Abrir currículo</a>
+          <a class="pv-btn" href="${LINKS.resume}" download>Baixar PDF</a>
+        </div>
+        <dl class="resume-facts">
+          <div><dt>Cargo</dt><dd>Desenvolvedor full stack .NET</dd></div>
+          <div><dt>Agora</dt><dd>${esc(JOBS[0].company)}, ${esc(JOBS[0].role)}</dd></div>
+          <div><dt>Antes</dt><dd>${esc(JOBS[1].company)}, ${esc(JOBS[1].role)}</dd></div>
+          <div><dt>Stack</dt><dd>C#, ASP.NET Core, Blazor, PostgreSQL, Redis</dd></div>
+          <div><dt>Formação</dt><dd>ADS na UNIP (2028) · Técnico pela Etec (2024)</dd></div>
+        </dl>
+      </div>`;
+    return;
+  }
   body.innerHTML = `
     <div class="pdf-bar">
       <span>Daniel_Vieira_Desenvolvedor.pdf</span>
@@ -787,5 +835,5 @@ async function boot(force = false) {
   await boot();
   const fromHash = location.hash.slice(1);
   // Start on a clean desktop; a hash such as #terminal opens that app directly.
-  if (APPS[fromHash]) launch(fromHash);
+  if (APPS[fromHash]) launch(fromHash, { silent: true });
 })();

@@ -71,23 +71,14 @@ img { display: block; max-width: 100%; }
 
 /* --------------------------------------------------------------- Desktop */
 .os { position: fixed; inset: 0; display: grid; grid-template-rows: var(--topbar) 1fr; }
+/* Wallpaper: night sky over a planet's edge, lit by the portrait's rim light. */
 .desktop {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(900px 600px at 78% 18%, rgba(177, 140, 255, .28), transparent 60%),
-    radial-gradient(700px 520px at 12% 88%, rgba(116, 240, 196, .16), transparent 60%),
-    radial-gradient(600px 400px at 95% 95%, rgba(90, 162, 255, .16), transparent 60%),
-    var(--bg);
+  background: #120a1f url("../assets/wallpaper.svg") 50% 100% / cover no-repeat;
 }
-/* Halftone dots, a nod to the comic-style portrait */
-.desktop::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background-image: radial-gradient(rgba(245, 240, 255, .07) 1px, transparent 1.4px);
-  background-size: 14px 14px;
-  mask-image: radial-gradient(ellipse at 70% 30%, #000 0%, transparent 75%);
-}
-.desktop-hello { position: absolute; right: 48px; bottom: calc(var(--dock-h) + 36px); max-width: 360px; text-align: right; color: var(--muted); pointer-events: none; }
+.sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.desktop-hello { position: absolute; left: 50%; bottom: 32%; transform: translateX(-50%); width: min(440px, calc(100% - 48px)); text-align: center; color: var(--muted); pointer-events: none; }
 .desktop-hello p:first-child { font: 700 clamp(28px, 4vw, 48px)/1.05 var(--font); color: var(--text); letter-spacing: -.02em; margin-bottom: 10px; }
 .desktop-hello strong { color: var(--mint); font-weight: 600; }
 
@@ -329,7 +320,11 @@ img { display: block; max-width: 100%; }
 .files-hint { margin-top: 18px; color: var(--dim); font-size: 13px; }
 
 /* --------------------------------------------------------------- Terminal */
-.term { background: #0b0614; padding: 12px 14px; font: 13.5px/1.6 var(--mono); cursor: text; }
+.term { display: flex; flex-direction: column; overflow: hidden; background: #0b0614; font: 13.5px/1.6 var(--mono); }
+.term-scroll { flex: 1; min-height: 0; overflow: auto; padding: 12px 14px; cursor: text; }
+.term-chips { display: flex; gap: 6px; padding: 8px 12px; overflow-x: auto; border-top: 1px solid var(--line); background: var(--vs-bar); scrollbar-width: none; }
+.term-chips button { flex: none; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); font: 12.5px/1.5 var(--mono); }
+.term-chips button:hover { color: var(--mint); border-color: var(--mint); }
 .t-row { white-space: pre-wrap; word-break: break-word; }
 .t-row a { color: var(--blue); }
 .t-cmd { margin-top: 6px; }
@@ -371,6 +366,19 @@ img { display: block; max-width: 100%; }
 .trash-item strong { font: 600 13.5px var(--mono); }
 .trash-item span { color: var(--muted); font-size: 13px; }
 
+.win-back, .home-card, .side-toggle, .code-scrim { display: none; }
+
+/* Phone résumé card */
+.pdf-card { display: block; overflow: auto; background: var(--bg-2); }
+.resume-card { display: grid; justify-items: center; text-align: center; padding: 32px 20px; }
+.resume-card > .app-icon { width: 64px; height: 64px; }
+.resume-file { margin-top: 10px; font: 600 13px var(--mono); color: var(--muted); word-break: break-all; }
+.resume-card .pv-actions { justify-content: center; margin-top: 18px; }
+.resume-facts { display: grid; gap: 1px; width: 100%; max-width: 420px; margin: 28px 0 0; border-radius: 14px; overflow: hidden; background: var(--line); text-align: left; }
+.resume-facts div { display: grid; grid-template-columns: 84px 1fr; gap: 10px; padding: 12px 14px; background: var(--bg-3); }
+.resume-facts dt { color: var(--dim); font-size: 13px; }
+.resume-facts dd { margin: 0; font-size: 14px; }
+
 /* ----------------------------------------------------------------- Toast */
 .toast { position: fixed; z-index: 800; left: 50%; bottom: calc(var(--dock-h) + 20px); transform: translate(-50%, 12px); padding: 9px 16px; border-radius: 999px; background: var(--text); color: var(--ink); font-weight: 600; font-size: 14px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s var(--ease-out); }
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
@@ -382,36 +390,97 @@ img { display: block; max-width: 100%; }
   .pv-cards { grid-template-columns: 1fr; }
 }
 
+/* Phones: a home screen with an intro card, and apps that open as full
+   screen pages with a back button (the system back gesture also works). */
 @media (max-width: 760px) {
-  :root { --dock-h: 70px; }
+  :root { --dock-h: 84px; --topbar: calc(30px + env(safe-area-inset-top)); }
+  .topbar { padding: env(safe-area-inset-top) 14px 0; gap: 10px; }
   .topbar-status, .topbar-app { display: none; }
-  .desktop-hello { left: 24px; right: 24px; bottom: calc(var(--dock-h) + 28px); text-align: left; }
-  .desktop-icons { position: static; display: grid; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(4, 1fr); justify-items: center; padding: 20px 12px; gap: 10px 0; }
-  .desk-icon { width: 80px; }
-  .dock { bottom: max(8px, env(safe-area-inset-bottom)); gap: 4px; padding: 6px 8px; max-width: calc(100% - 16px); }
-  .dock-item { width: 44px; height: 44px; }
+  .start-menu { left: 8px; right: 8px; width: auto; }
+
+  .desktop { display: flex; flex-direction: column; overflow-y: auto; padding-bottom: calc(var(--dock-h) + 20px); }
+  .sky { position: fixed; top: var(--topbar); height: calc(100% - var(--topbar)); }
+  .desktop-hello { display: none; }
+  .home-card { position: relative; z-index: 1; display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: center; margin: 16px 16px 4px; padding: 16px; border-radius: 22px; background: rgba(24, 15, 41, .62); border: 1px solid rgba(245, 240, 255, .1); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .home-card img { width: 72px; height: 72px; border-radius: 20px; object-fit: cover; background: var(--bg-3); }
+  .home-name { font-size: 20px; font-weight: 700; line-height: 1.15; }
+  .home-role { color: var(--muted); font-size: 14px; }
+  .home-status { display: flex; align-items: center; gap: 8px; margin-top: 5px; color: var(--mint); font-size: 12.5px; }
+  .home-actions { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 8px; }
+  .home-btn { height: 44px; border-radius: 12px; border: 1px solid var(--line-2); background: rgba(245, 240, 255, .04); font-size: 14px; font-weight: 600; }
+  .home-btn.solid { background: var(--mint); border-color: var(--mint); color: var(--ink); }
+  .desktop-icons { position: relative; inset: auto; z-index: 1; display: grid; grid-auto-flow: row; grid-template-rows: none; grid-template-columns: repeat(4, 1fr); justify-items: center; padding: 18px 10px; gap: 14px 0; }
+  .desk-icon { width: 80px; height: auto; padding: 6px 2px; }
+  .desk-icon .app-icon { width: 56px; height: 56px; }
+  .desk-label { font-size: 12.5px; }
+
+  .dock { bottom: max(10px, env(safe-area-inset-bottom)); gap: 12px; padding: 8px 12px; border-radius: 26px; }
+  .dock-item { width: 52px; height: 52px; }
+  .dock-item[data-app="pdf"], .dock-item[data-app="browser"] { display: none; }
   .dock-item:hover { transform: none; }
   .dock-tip { display: none; }
-  /* Windows are full screen on phones */
-  .window { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; min-width: 0; border-radius: 0; border-width: 0; }
-  .win-resize { display: none; }
-  .win-ctrl.max { display: none; }
-  .win-ctrl { width: 52px; }
-  .win-ctrl.close { background: rgba(232, 17, 35, .85); color: #fff; }
-  .code { grid-template-columns: 1fr; grid-template-rows: auto 1fr 24px; }
+
+  /* Apps as full screen pages */
+  .windows { position: fixed; inset: var(--topbar) 0 0 0; z-index: 450; }
+  .window { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; min-width: 0; min-height: 0; grid-template-rows: 50px 1fr; border: 0; border-radius: 0; box-shadow: none !important; }
+  .window.is-opening { animation: app-in .28s var(--ease-out); }
+  .window.is-closing { animation: app-out .18s ease-in forwards; }
+  .win-bar { position: relative; justify-content: center; padding: 0 8px; }
+  .win-back { display: flex; align-items: center; gap: 2px; position: absolute; left: 4px; top: 0; bottom: 0; padding: 0 12px 0 8px; color: var(--mint); font-size: 15px; font-weight: 600; }
+  .win-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .win-icon, .win-ctrls, .win-resize { display: none; }
+  .win-title { flex: none; max-width: 56%; font-size: 15px; text-align: center; }
+  .window:not(.is-focused) .win-bar { color: inherit; }
+
+  /* Editor: files live in a drawer */
+  .code { position: relative; grid-template-columns: 1fr; grid-template-rows: 1fr 24px; }
   .code-activity { display: none; }
-  .code-side { grid-row: 1; max-height: 26vh; border-right: 0; border-bottom: 1px solid var(--line); }
-  .code-main { grid-row: 2; }
-  .code-status { grid-row: 3; }
-  .pv { padding: 24px 18px 40px; }
-  .pv-hero { grid-template-columns: 1fr; }
-  .pv-photo { width: 160px; }
-  .pv-skill-grid { grid-template-columns: 1fr; }
-  .welcome { padding: 32px 20px; }
+  .code-side { position: absolute; z-index: 5; top: 0; bottom: 24px; left: 0; width: min(80%, 300px); transform: translateX(-102%); transition: transform .24s var(--ease-out); box-shadow: 20px 0 40px rgba(0, 0, 0, .45); }
+  .code.side-open .code-side { transform: none; }
+  .code-scrim { display: block; position: absolute; z-index: 4; inset: 0 0 24px; background: rgba(5, 2, 10, .55); opacity: 0; pointer-events: none; transition: opacity .2s; }
+  .code.side-open .code-scrim { opacity: 1; pointer-events: auto; }
+  .code-main { grid-row: 1; }
+  .code-status { grid-row: 2; }
+  .side-toggle { display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line-2); color: var(--text); font-size: 13px; font-weight: 600; }
+  .side-toggle svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; }
+  .code-crumbs { justify-content: space-between; padding: 8px 12px; }
+  .crumb-path { display: none; }
+  .crumb-toggle button { padding: 6px 12px; font-size: 13px; }
+  .code-tab [role="tab"] { padding: 11px 4px 11px 14px; }
+  .tab-x { width: 30px; height: 30px; }
+  .tree-row { padding-top: 9px; padding-bottom: 9px; font-size: 14px; }
+  .tree-root > summary, .tree-folder > summary { padding-top: 8px; padding-bottom: 8px; }
+  .side-empty .vs-btn { padding: 10px 14px; }
+  .welcome { padding: 28px 20px; }
+  .welcome-logo { width: 56px; height: 56px; }
+  .welcome h1 { font-size: 24px; }
+  .welcome-sub { margin-bottom: 24px; }
   .welcome-cols { grid-template-columns: 1fr; gap: 20px; }
+  .welcome-link, .welcome-recent { padding: 8px 0; }
+
+  .pv { padding: 22px 18px 40px; }
+  .pv h1 { font-size: 30px; }
+  .pv-hero { grid-template-columns: 1fr; gap: 18px; }
+  .pv-photo { width: 132px; border-radius: 18px; }
+  .pv-actions .pv-btn { flex: 1 1 auto; justify-content: center; padding: 11px 16px; }
+  .pv-skill-grid { grid-template-columns: 1fr; }
+  .pv-links button { padding: 14px 16px; }
+
   .files { grid-template-columns: 1fr; }
   .files-side { display: none; }
+  .files-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .term { font-size: 13px; }
+  .term-line input { font-size: 16px; }   /* avoids iOS zoom on focus */
+  .term-chips { padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); }
+  .term-chips button { padding: 7px 14px; font-size: 13px; }
+  .t-fetch { flex-direction: column; gap: 10px; }
+
+  .browser-bar .pv-btn { display: none; }
+  .toast { bottom: calc(var(--dock-h) + 24px); }
 }
+@keyframes app-in { from { opacity: 0; transform: translateY(28px); } }
+@keyframes app-out { to { opacity: 0; transform: translateY(28px); } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

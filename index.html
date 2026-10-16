@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="os/os.css">
   <script defer src="os/content.js"></script>
   <script defer src="os/os.js"></script>
+  <script defer src="os/sky.js"></script>
 </head>
 <body>
   <noscript>
@@ -50,6 +51,20 @@
     </div>
 
     <main class="desktop" id="desktop" aria-label="Área de trabalho">
+      <canvas class="sky" id="sky" aria-hidden="true"></canvas>
+      <section class="home-card" aria-label="Apresentação">
+        <img src="assets/daniel-avatar.webp" alt="Retrato ilustrado de Daniel Vieira" width="72" height="72">
+        <div class="home-id">
+          <p class="home-name">Daniel Vieira</p>
+          <p class="home-role">Desenvolvedor full stack .NET</p>
+          <p class="home-status"><span class="pulse" aria-hidden="true"></span>Disponível para conversar</p>
+        </div>
+        <div class="home-actions">
+          <button type="button" class="home-btn solid" data-launch="code" data-project>Abrir portfólio</button>
+          <button type="button" class="home-btn" data-launch="pdf">Currículo</button>
+          <button type="button" class="home-btn" data-launch="contact">Contato</button>
+        </div>
+      </section>
       <ul class="desktop-icons" id="desktop-icons" aria-label="Aplicativos"></ul>
       <div class="desktop-hello" aria-hidden="true">
         <p>Olá, eu sou o Daniel.</p>
