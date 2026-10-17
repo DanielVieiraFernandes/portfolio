@@ -65,9 +65,7 @@ img { display: block; max-width: 100%; }
 .boot.is-done { opacity: 0; pointer-events: none; }
 .boot-dos { position: absolute; inset: 0; padding: max(24px, env(safe-area-inset-top)) 28px 28px; display: flex; flex-direction: column; justify-content: space-between; }
 .boot-dos pre { margin: 0; font: inherit; white-space: pre-wrap; }
-.boot-caret { animation: caret 1s steps(1) infinite; }
-@keyframes caret { 50% { opacity: 0; } }
-.boot-press { align-self: center; margin-bottom: 14vh; padding: 6px 14px; background: #c0c0c0; color: #000; text-align: center; animation: caret 1.2s steps(1) infinite; }
+.boot-press { align-self: center; margin-bottom: 14vh; padding: 6px 14px; background: #c0c0c0; color: #000; text-align: center; }
 .boot-press span { opacity: .7; }
 .boot-splash { display: grid; justify-items: center; text-align: center; padding: 24px; image-rendering: pixelated; }
 .boot-logo { width: min(280px, 64vw); height: auto; margin-bottom: 18px; }
@@ -84,13 +82,13 @@ img { display: block; max-width: 100%; }
 
 /* --------------------------------------------------------------- Desktop */
 .os { position: fixed; inset: 0; display: grid; grid-template-rows: var(--topbar) 1fr; }
-/* Wallpaper: night sky over a planet's edge, lit by the portrait's rim light. */
+/* Wallpaper: pixel art night sky over a planet's edge, drawn by os/sky.js. */
 .desktop {
   position: relative;
   overflow: hidden;
-  background: #120a1f url("../assets/wallpaper.svg") 50% 100% / cover no-repeat;
+  background: #07040d;
 }
-.sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.sky { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; image-rendering: pixelated; image-rendering: crisp-edges; }
 .desktop-hello { position: absolute; left: 50%; bottom: 32%; transform: translateX(-50%); width: min(440px, calc(100% - 48px)); text-align: center; color: var(--muted); pointer-events: none; }
 .desktop-hello p:first-child { font: 700 clamp(28px, 4vw, 48px)/1.05 var(--font); color: var(--text); letter-spacing: -.02em; margin-bottom: 10px; }
 .desktop-hello strong { color: var(--mint); font-weight: 600; }
