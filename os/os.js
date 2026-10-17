@@ -807,22 +807,80 @@ async function copyEmail() {
 }
 
 /* -------------------------------------------------------------------- Boot */
+/* A short, original 16-bit style startup chime made with Web Audio:
+   a rising arpeggio that settles into a warm chord (about 2 s). */
+function playChime() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+  const ac = new AC();
+  const t0 = ac.currentTime + 0.05;
+  const master = ac.createGain();
+  master.gain.value = 0.16;
+  const tone = ac.createBiquadFilter();
+  tone.type = 'lowpass';
+  tone.frequency.value = 2400;
+  const echo = ac.createDelay();
+  echo.delayTime.value = 0.16;
+  const feedback = ac.createGain();
+  feedback.gain.value = 0.28;
+  tone.connect(master);
+  tone.connect(echo);
+  echo.connect(feedback);
+  feedback.connect(echo);
+  echo.connect(master);
+  master.connect(ac.destination);
+
+  const note = (freq, start, length, type, level) => {
+    const osc = ac.createOscillator();
+    const env = ac.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    env.gain.setValueAtTime(0, start);
+    env.gain.linearRampToValueAtTime(level, start + 0.02);
+    env.gain.exponentialRampToValueAtTime(0.0001, start + length);
+    osc.connect(env);
+    env.connect(tone);
+    osc.start(start);
+    osc.stop(start + length + 0.05);
+  };
+  [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => note(f, t0 + i * 0.11, 0.35, 'square', 0.22));
+  [261.63, 392, 523.25, 659.25, 987.77].forEach((f, i) => note(f, t0 + 0.5 + i * 0.02, 1.6, i ? 'triangle' : 'sine', i ? 0.32 : 0.5));
+  setTimeout(() => ac.close(), 3000);
+}
+
 async function boot(force = false) {
   const screen = $('#boot');
+  const dos = $('.boot-dos', screen);
+  const splash = $('.boot-splash', screen);
   let seen = false;
   try { seen = sessionStorage.getItem('danielos-booted') === '1'; } catch {}
-  if ((seen && !force) || reducedMotion.matches) { screen.hidden = true; return; }
+  if (seen && !force) { screen.hidden = true; return; }
   screen.classList.remove('is-done');
   screen.hidden = false;
-  let skip;
-  const skipped = new Promise(r => { skip = r; });
-  addEventListener('keydown', skip, { once: true });
-  screen.addEventListener('pointerdown', skip, { once: true });
-  await Promise.race([wait(1600), skipped]);
-  removeEventListener('keydown', skip);
+  dos.hidden = false;
+  splash.hidden = true;
+  splash.classList.remove('is-in');
+
+  // Wait for a click or key: browsers only allow sound after a gesture.
+  await new Promise(resolve => {
+    const go = e => {
+      if (e.type === 'keydown' && ['Shift', 'Control', 'Alt', 'Meta', 'Tab'].includes(e.key)) return;
+      removeEventListener('keydown', go);
+      screen.removeEventListener('pointerdown', go);
+      resolve();
+    };
+    addEventListener('keydown', go);
+    screen.addEventListener('pointerdown', go);
+  });
+
+  try { playChime(); } catch {}
+  dos.hidden = true;
+  splash.hidden = false;
+  if (!reducedMotion.matches) splash.classList.add('is-in');
+  await new Promise(r => setTimeout(r, 2300));
   try { sessionStorage.setItem('danielos-booted', '1'); } catch {}
   screen.classList.add('is-done');
-  await wait(400);
+  await wait(350);
   screen.hidden = true;
 }
 

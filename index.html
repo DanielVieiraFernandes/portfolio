@@ -9,7 +9,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23120a1f'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='sans-serif' font-weight='800' font-size='30' fill='%2374f0c4'%3Edv%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:wght@400;600&family=VT323&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/daniel-avatar.webp" type="image/webp">
   <link rel="stylesheet" href="os/os.css">
   <script defer src="os/content.js"></script>
@@ -25,11 +25,31 @@
   </noscript>
 
   <div class="boot" id="boot" aria-hidden="true">
-    <div class="boot-inner">
-      <span class="boot-logo">dv</span>
-      <p class="boot-name">DanielOS</p>
-      <div class="boot-bar"><i></i></div>
-      <p class="boot-hint">Clique ou pressione qualquer tecla para pular</p>
+    <div class="boot-dos">
+      <pre>DanielOS BIOS v3.1  (C) 2026 Daniel Vieira
+Memória base: 640K OK
+Unidade C: portfolio ............ OK
+
+C:\&gt; danielos<span class="boot-caret">_</span></pre>
+      <p class="boot-press">Clique ou pressione qualquer tecla para iniciar <span>(com som)</span></p>
+    </div>
+    <div class="boot-splash" hidden>
+      <svg class="boot-logo" viewBox="0 0 160 96" aria-hidden="true" shape-rendering="crispEdges">
+        <rect x="4" y="30" width="6" height="6" fill="#74f0c4" opacity="0.35"/><rect x="14" y="22" width="8" height="8" fill="#74f0c4" opacity="0.6"/><rect x="26" y="34" width="8" height="8" fill="#b18cff" opacity="0.5"/><rect x="14" y="44" width="6" height="6" fill="#5aa2ff" opacity="0.4"/><rect x="4" y="52" width="6" height="6" fill="#ff6b8b" opacity="0.3"/><rect x="26" y="50" width="8" height="8" fill="#ff6b8b" opacity="0.6"/><rect x="38" y="26" width="10" height="10" fill="#74f0c4" opacity="0.9"/><rect x="38" y="44" width="10" height="10" fill="#ff6b8b" opacity="0.9"/><rect x="38" y="62" width="8" height="8" fill="#5aa2ff" opacity="0.6"/><rect x="26" y="66" width="6" height="6" fill="#b18cff" opacity="0.35"/>
+        <rect x="56" y="14" width="96" height="72" fill="#c0c0c0"/>
+        <rect x="56" y="14" width="96" height="2" fill="#fff"/><rect x="56" y="14" width="2" height="72" fill="#fff"/>
+        <rect x="56" y="84" width="96" height="2" fill="#404040"/><rect x="150" y="14" width="2" height="72" fill="#404040"/>
+        <rect x="60" y="18" width="88" height="12" fill="#3b2a8f"/>
+        <rect x="138" y="20" width="8" height="8" fill="#c0c0c0"/>
+        <rect x="60" y="32" width="88" height="50" fill="#120a1f"/>
+        <g fill="#74f0c4">
+          <rect x="78" y="40" width="6" height="34"/><rect x="66" y="52" width="12" height="6"/><rect x="66" y="68" width="12" height="6"/><rect x="62" y="56" width="6" height="14"/>
+          <rect x="94" y="52" width="6" height="12"/><rect x="118" y="52" width="6" height="12"/><rect x="100" y="64" width="6" height="6"/><rect x="112" y="64" width="6" height="6"/><rect x="106" y="70" width="6" height="4"/>
+        </g>
+      </svg>
+      <p class="boot-title">DanielOS</p>
+      <p class="boot-version">Versão 3.1</p>
+      <p class="boot-copy">Copyright © 2026 Daniel Vieira. Todos os direitos reservados.</p>
     </div>
   </div>
 

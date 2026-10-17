@@ -12,7 +12,7 @@ Na pasta do projeto, suba qualquer servidor estático, por exemplo `python -m ht
 
 ## Estrutura do DanielOS
 
-- `index.html`: casca do sistema (tela de boot, barra superior, área de trabalho e dock).
+- `index.html`: casca do sistema (tela de boot, barra superior, área de trabalho e dock). O boot começa num prompt estilo DOS; o clique ou tecla libera o som, e aparece uma tela de abertura dos anos 90 com um toque de inicialização de uns 2 segundos, gerado na hora com Web Audio (sem arquivo de áudio). Aparece uma vez por sessão; "Reiniciar" no menu mostra de novo.
 - `os/content.js`: todo o conteúdo (projetos, experiência, habilidades, contato e os arquivos que aparecem no editor). Edite aqui para atualizar textos.
 - `os/os.js`: gerenciador de janelas e aplicativos (editor, projetos, terminal, currículo, contato, navegador e lixeira).
 - `assets/wallpaper.svg`: papel de parede, um céu noturno sobre a borda de um planeta, iluminada pelo mesmo menta e violeta do retrato.
